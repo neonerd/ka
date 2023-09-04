@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c rollup.build.config.mjs",
     "dev": "rollup -c -w"
   },
   "author": "",
