@@ -8,9 +8,12 @@ import './scss/base.scss';
 // INTERFACES
 //
 
+type ConceptCategory = 'teaching' | 'structure'
+
 interface Concept {
     name: string
     emoji: string
+    category: ConceptCategory
 }
 
 interface Question {
@@ -24,35 +27,54 @@ const questions: Question[] = [
         text: 'Jaký je tvůj vztah k učení?',
         conceptA: {
             name: 'fire',
-            emoji: '🔥'
+            emoji: '🔥',
+            category: 'teaching'
         },
         conceptB: {
             name: 'love',
-            emoji: '❤️'
+            emoji: '❤️',
+            category: 'teaching'
         }
     },
     {
         text: 'S osnovami nebo bez osnov?',
         conceptA: {
             name: 'structure',
-            emoji: '📝'
+            emoji: '📝',
+            category: 'structure'
         },
         conceptB: {
             name: 'no_structure',
-            emoji: '🗑️'
+            emoji: '🗑️',
+            category: 'structure'
         }
     },
     {
         text: 'Přednášky nebo semináře?',
         conceptA: {
             name: 'presentations',
-            emoji: '👩‍🏫'
+            emoji: '👩‍🏫',
+            category: 'structure'
         },
         conceptB: {
             name: 'workshops',
-            emoji: '🧑🏽‍🤝‍🧑🏻'
+            emoji: '🧑🏽‍🤝‍🧑🏻',
+            category: 'structure'
         }
     },
+    {
+        text: 'Rychle nebo pomalu?',
+        conceptA: {
+            name: 'slow',
+            emoji: '🐌',
+            category: 'teaching'
+        },
+        conceptB: {
+            name: 'fast',
+            emoji: '💨',
+            category: 'teaching'
+        }
+    }
 ]
 
 const manifestoConcepts: Concept[] = []
@@ -114,9 +136,7 @@ const rerender = () => {
     if (manifestoConcepts.length === 0) {
         textEl.innerText = 'Učíš.'
     } else {
-        for (const c of manifestoConcepts) {
-
-        }
+        textEl.innerText = composeManifesto(manifestoConcepts)
     }
 
     currentQuestion = questions.shift()
@@ -132,7 +152,54 @@ const rerender = () => {
 }
 
 const composeManifesto = (concepts: Concept[]): string => {
+    const categoryMap: Record<string, string[]> = {
+        'teaching': [],
+        'structure': []
+    }
+
     let txt: string[] = []
+
+    for (const c of concepts) {
+        categoryMap[c.category].push(c.name)
+    }
+
+    // Teaching
+    const teachingTokens = []
+    for (const name of categoryMap['teaching']) {
+        if (name == 'fire') {
+            teachingTokens.push('se zápalem')
+        }
+        if (name == 'love') {
+            teachingTokens.push('s láskou')
+        }
+        if (name == 'slow') {
+            teachingTokens.push('pomalu')
+        }
+        if (name == 'fast') {
+            teachingTokens.push('rychle')
+        }
+    }
+    txt.push(`Učíš ${teachingTokens.join(' a ')}.`)
+
+    // Structure
+    const structureTokens = []
+    for (const name of categoryMap['structure']) {
+        if (name == 'structure') {
+            structureTokens.push('s osnovami')
+        }
+        if (name == 'no_structure') {
+            structureTokens.push('bez osnov')
+        }
+        if (name == 'presentations') {
+            structureTokens.push('s přednáškami')
+        }
+        if (name == 'workshops') {
+            structureTokens.push('se semináři')
+        }
+    }
+    if (structureTokens.length) {
+        txt.push(`Učíš ${structureTokens.join(' a ')}.`)
+    }
 
     return txt.join(' ')
 }
