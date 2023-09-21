@@ -2,234 +2,258 @@
 // STYLES
 //
 
-import './scss/base.scss';
+import './scss/base.scss'
 
 // 
 // INTERFACES
 //
 
-type ConceptCategory = 'teaching' | 'structure'
+import { State, World } from './model'
 
-interface Concept {
-    name: string
-    emoji: string
-    category: ConceptCategory
-}
+// ===
+// === DATA
+// ===
 
-interface Question {
-    text: string
-    conceptA: Concept
-    conceptB: Concept
-}
+import {
+    categories,
+    attributes,
+    concepts
+} from './data'
 
-const questions: Question[] = [
-    {
-        text: 'Jaký je tvůj vztah k učení?',
-        conceptA: {
-            name: 'fire',
-            emoji: '🔥',
-            category: 'teaching'
-        },
-        conceptB: {
-            name: 'love',
-            emoji: '❤️',
-            category: 'teaching'
-        }
-    },
-    {
-        text: 'S osnovami nebo bez osnov?',
-        conceptA: {
-            name: 'structure',
-            emoji: '📝',
-            category: 'structure'
-        },
-        conceptB: {
-            name: 'no_structure',
-            emoji: '🗑️',
-            category: 'structure'
-        }
-    },
-    {
-        text: 'Přednášky nebo semináře?',
-        conceptA: {
-            name: 'presentations',
-            emoji: '👩‍🏫',
-            category: 'structure'
-        },
-        conceptB: {
-            name: 'workshops',
-            emoji: '🧑🏽‍🤝‍🧑🏻',
-            category: 'structure'
-        }
-    },
-    {
-        text: 'Rychle nebo pomalu?',
-        conceptA: {
-            name: 'slow',
-            emoji: '🐌',
-            category: 'teaching'
-        },
-        conceptB: {
-            name: 'fast',
-            emoji: '💨',
-            category: 'teaching'
-        }
-    }
-]
+// ===
+// === IMPORTED FUNCTIONS AND TEMPLATES
+// ===
 
-const manifestoConcepts: Concept[] = []
+import { clone } from 'rambda'
+import { createButtonsElement, createDomElementWithIdAndClass, shuffle } from './util'
+import { introTextTemplate, outroTextTemplate, questionTextTemplate } from './templates'
+import { fadeInElement, fadeOutElement } from './animations'
+import { composeManifestoHeading, getConceptsForChoice } from './logic'
 
-//
-// BOOTSTRAP
-//
+// ===
+// === DOM
+// ===
 
-// DOM
+// Main Elements
 
 const rootEl = document.createElement('div')
 rootEl.id='root'
 window.document.body.appendChild(rootEl)
 
-const wrapperEl = document.createElement('div')
-wrapperEl.id='wrapper'
-
-const textEl = document.createElement('div')
-textEl.id = 'text'
-textEl.innerText = 'Učíš.'
-
-wrapperEl.appendChild(textEl)
+const wrapperEl = createDomElementWithIdAndClass('wrapper', 'wrapper')
 rootEl.appendChild(wrapperEl)
 
-const buttonsEl = document.createElement('div')
-buttonsEl.id = 'buttons'
+// Sections
 
-// Question
-const questionEl = document.createElement('div')
-questionEl.id = 'question'
-questionEl.innerText = 'Otázka.'
-wrapperEl.appendChild(questionEl)
+// === Intro
+const introEl = createDomElementWithIdAndClass('intro', 'intro', wrapperEl)
+const introTextEl = createDomElementWithIdAndClass('intro-text', 'intro-text', introEl)
+introTextEl.innerHTML = introTextTemplate
+const introButtonsGroup = createButtonsElement('intro')
+introEl.appendChild(introButtonsGroup.buttonsEl)
 
-// Buttons
+// === Questions
+const questionsEl = createDomElementWithIdAndClass('questions', 'questions', wrapperEl)
+const questionsHolderEl = createDomElementWithIdAndClass('questions-holder', 'questions-holder', questionsEl)
+const question1El = createDomElementWithIdAndClass('question-1', 'question-text', questionsHolderEl)
+const question2El = createDomElementWithIdAndClass('question-2', 'question-text', questionsHolderEl)
+const questionsButtonsGroup = createButtonsElement('questions')
+questionsEl.appendChild(questionsButtonsGroup.buttonsEl)
 
-const aButtonEl = document.createElement('button')
-aButtonEl.className = 'btn'
-aButtonEl.innerText = '🔥'
+question1El.innerHTML = questionTextTemplate('kontinuita', 'Kontinuita udržuje plynulý průběh vzdělávacího procesu bez přerušení. Budeš ji využívat pro lepší sledování a podporu studentů, což zvyšuje efektivitu učení a umožňuje lépe plánovat výuku a přizpůsobit ji potřebám jednotlivých žáků.')
+question2El.innerHTML = questionTextTemplate('struktura', 'Struktura se týká organizace a uspořádání vzdělávacího procesu, včetně obsahu, cílů a metody. Pomáhá pedagogům lépe plánovat výuku, udržet ji systematickou a efektivní, což zvyšuje studentstvu jasnost a porozumění. Také usnadňuje hodnocení výkonů a poskytuje jasný rámec pro výukový proces.')
 
-const bButtonEl = document.createElement('button')
-bButtonEl.className = 'btn'
-bButtonEl.innerText = '❤️'
+// === Manifesto
+const manifestoEl = createDomElementWithIdAndClass('manifesto', 'manifesto', wrapperEl)
 
-buttonsEl.appendChild(aButtonEl)
-buttonsEl.appendChild(bButtonEl)
+const manifestoTextEl = createDomElementWithIdAndClass('manifesto-text', 'manifesto-text', manifestoEl)
 
-wrapperEl.appendChild(buttonsEl)
+const manifestoHeadingEl = createDomElementWithIdAndClass('manifesto-heading', 'manifesto-heading', manifestoTextEl)
+const manifestoFirstParagraphEl = createDomElementWithIdAndClass('manifesto-1-p', 'manifesto-paragraph', manifestoTextEl)
+const manifestoSecondParagraphEl = createDomElementWithIdAndClass('manifesto-2-p', 'manifesto-paragraph', manifestoTextEl)
+const manifestoThirdParagraphEl = createDomElementWithIdAndClass('manifesto-3-p', 'manifesto-paragraph', manifestoTextEl)
+const manifestoFourthParagraphEl = createDomElementWithIdAndClass('manifesto-4-p', 'manifesto-paragraph', manifestoTextEl)
+
+manifestoHeadingEl.innerHTML = 'kontinuita | supervize | konference | sebareflexe'
+manifestoFirstParagraphEl.innerHTML = `Učím efektivněji a lépe si plánuju výuku.<br>Studentstvo je sebevědomejší.`
+manifestoSecondParagraphEl.innerHTML = `Dostal jsem supervizi.<br>Studentské umění je jedinečnejší.`
+manifestoThirdParagraphEl.innerHTML = `Zorganizovali jsme studentskou konferenci.<br>Lidé víc vnímajú modrou barvu.`
+manifestoFourthParagraphEl.innerHTML = `Reflektuji své pedagogické metody.<br>Jsem klidnější.`
+
+// === Outro
+const outroEl = createDomElementWithIdAndClass('outro', 'outro', wrapperEl)
+
+const outroTextEl = createDomElementWithIdAndClass('outro-text', 'outro-text', outroEl)
+outroTextEl.innerHTML = outroTextTemplate
+
+const outroButtonsGroup = createButtonsElement('outro')
+outroEl.appendChild(outroButtonsGroup.buttonsEl)
 
 // ===
-// === STATE
+// === END OF DOM
 // ===
-let currentQuestion: Question | undefined = undefined
 
 // ===
 // === FUNCTIONS
 // ===
 
-const rerender = () => {
-    if (manifestoConcepts.length === 0) {
-        textEl.innerText = 'Učíš.'
-    } else {
-        textEl.innerText = composeManifesto(manifestoConcepts)
+const startCurrentState = (s: State) => {
+    // INTRO
+    if (s.scene == 'intro') {
+        console.log('StartCurrentState: Intro')
+        fadeInElement(introEl)
     }
+    // CHOICE
+    if (s.scene == 'choice') {
+        console.log('StartCurrentState: Choice')
+        
+        // Choose concepts and assign them to questions
+        getConceptsForChoice(s)
+        question1El.innerHTML = questionTextTemplate(s.currentConcepts[0].name, s.currentConcepts[0].description)
+        question2El.innerHTML = questionTextTemplate(s.currentConcepts[1].name, s.currentConcepts[1].description)
 
-    currentQuestion = questions.shift()
+        // Fade in UI
+        fadeInElement(questionsEl)
+    }
+    // MANIFESTO
+    if (s.scene == 'manifesto') {
+        console.log('StartCurrentState: Manifesto')
 
-    if (currentQuestion) {
-        questionEl.innerText = currentQuestion.text
-        aButtonEl.innerText = currentQuestion.conceptA.emoji
-        bButtonEl.innerText = currentQuestion.conceptB.emoji
-    } else {
-        questionEl.style.display = 'none'
-        buttonsEl.style.display = 'none'
+        // Compose the manifesto
+        manifestoHeadingEl.innerHTML = composeManifestoHeading(s.world.concepts)
+
+        if (s.world.concepts[0]) {
+            manifestoFirstParagraphEl.innerHTML = `Větička o pojmu ${s.world.concepts[0].name}.<br>Větička o tom, jak to vplývá na studentstvo.`
+        }
+
+        if (s.world.concepts[1]) {
+            manifestoSecondParagraphEl.innerHTML = `Větička o pojmu ${s.world.concepts[1].name}.<br>Větička o tom, jak to vplývá na umčo.`
+        } else {
+            manifestoSecondParagraphEl.innerHTML = ``
+        }
+
+        if (s.world.concepts[2]) {
+            manifestoThirdParagraphEl.innerHTML = `Větička o pojmu ${s.world.concepts[2].name}.<br>Větička o tom, jak to vplývá na společnost.`
+        } else {
+            manifestoThirdParagraphEl.innerHTML = ``
+        }
+
+        if (s.world.concepts[3]) {
+            manifestoFourthParagraphEl.innerHTML = `Větička o pojmu ${s.world.concepts[3].name}.<br>Větička o tom, jak to vplývá na mně.`
+        } else {
+            manifestoFourthParagraphEl.innerHTML = ``
+        }
+
+        // Fade in UI
+        fadeInElement(manifestoEl).then(() => {
+            setTimeout(() => {
+                finishCurrentState('', s)
+            }, 5000)
+        })
+    }
+    // OUTRO
+    if (s.scene == 'outro') {
+        console.log('StartCurrentState: Outro')
+
+        fadeInElement(outroEl)
     }
 }
 
-const composeManifesto = (concepts: Concept[]): string => {
-    const categoryMap: Record<string, string[]> = {
-        'teaching': [],
-        'structure': []
-    }
+const finishCurrentState = (choice: string, s: State) => {
+    console.log('FinishtCurrentState')
 
-    let txt: string[] = []
-
-    for (const c of concepts) {
-        categoryMap[c.category].push(c.name)
+    // INTRO
+    if (s.scene == 'intro') {
+        console.log('FinishtCurrentState: Intro')
+        fadeOutElement(introEl).then(() => {
+            s.scene = 'choice'
+            startCurrentState(s)
+        })
     }
+    // CHOICE
+    if (s.scene == 'choice') {
+        console.log('FinishtCurrentState: Choice')
 
-    // Teaching
-    const teachingTokens = []
-    for (const name of categoryMap['teaching']) {
-        if (name == 'fire') {
-            teachingTokens.push('se zápalem')
+        if (choice == 'A') {
+            s.world.concepts.push(s.currentConcepts[0])
+        } else {
+            s.world.concepts.push(s.currentConcepts[1])
         }
-        if (name == 'love') {
-            teachingTokens.push('s láskou')
-        }
-        if (name == 'slow') {
-            teachingTokens.push('pomalu')
-        }
-        if (name == 'fast') {
-            teachingTokens.push('rychle')
-        }
-    }
-    txt.push(`Učíš ${teachingTokens.join(' a ')}.`)
 
-    // Structure
-    const structureTokens = []
-    for (const name of categoryMap['structure']) {
-        if (name == 'structure') {
-            structureTokens.push('s osnovami')
-        }
-        if (name == 'no_structure') {
-            structureTokens.push('bez osnov')
-        }
-        if (name == 'presentations') {
-            structureTokens.push('s přednáškami')
-        }
-        if (name == 'workshops') {
-            structureTokens.push('se semináři')
-        }
+        fadeOutElement(questionsEl).then(() => {
+            s.scene = 'manifesto'
+            startCurrentState(s)
+        })
     }
-    if (structureTokens.length) {
-        txt.push(`Učíš ${structureTokens.join(' a ')}.`)
-    }
+    // MANIFESTO
+    if (s.scene == 'manifesto') {
+        console.log('FinishtCurrentState: Manifesto')
 
-    return txt.join(' ')
+        fadeOutElement(manifestoEl).then(() => {
+            if (s.world.concepts.length < 4) {
+                s.scene = 'choice'
+                startCurrentState(s)
+            } else {
+                s.scene = 'outro'
+                startCurrentState(s)
+            }
+        })        
+    }
+    // OUTRO
+    if (s.scene == 'outro') {
+        console.log('FinishtCurrentState: Outro')
+
+
+    }
 }
 
-const choseConcept = (c: Concept) => {
-    manifestoConcepts.push(c)
-    rerender()
+const handleInput = (e: KeyboardEvent, s: State) => {
+    console.log(e.code)
+
+    // A
+    if (e.code == 'KeyA') {
+        finishCurrentState('A', s)
+    }
+
+    // B
+    if (e.code == 'KeyB') {
+        finishCurrentState('B', s)
+    }
 }
 
 // ===
 // === EVENTS
 // ===
 
-aButtonEl.onclick = () => {
-    if (currentQuestion) {
-        choseConcept(currentQuestion.conceptA)
-    }
-}
 
-bButtonEl.onclick = () => {
-    if (currentQuestion) {
-        choseConcept(currentQuestion.conceptB)
-    }
-}
 
 // ===
-// === Fire it up
+// === BOOTSTRAP
 // ===
 
 const init = () => {
-    rerender()
+    const world: World = {
+        attributes: [],
+        concepts: [],
+        manifesto: {
+            concepts: []
+        }
+    }
+    
+    const state: State = {
+        scene: 'intro',
+        currentConcepts: [],
+    
+        conceptsDatabase: shuffle(clone(concepts)),
+        attributesDatabase: shuffle(clone(attributes)),
+
+        world: world
+    }
+
+    window.addEventListener('keyup', (e) => {
+        handleInput(e, state)
+    })
+
+    startCurrentState(state)
 }
 init()
