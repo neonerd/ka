@@ -233,13 +233,20 @@ const handleInput = (e: KeyboardEvent, s: State) => {
 
 const init = () => {
     const world: World = {
-        attributes: [],
+        attributes: {
+            students: [],
+            art: [],
+            society: [],
+            you: []
+        },
         concepts: [],
         manifesto: {
             concepts: []
         }
     }
     
+    console.log(concepts)
+
     const state: State = {
         scene: 'intro',
         currentConcepts: [],

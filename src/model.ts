@@ -4,8 +4,8 @@ export interface ConceptCategory {
 
 export interface Concept {
     name: string
-    category: ConceptCategory
     description: string
+    manifestoSentence: string
 }
 
 export interface Manifesto {
@@ -19,9 +19,16 @@ export interface Attribute {
     name: string
 }
 
+export interface WorldAttributes {
+    students: Attribute[]
+    art: Attribute[]
+    society: Attribute[]
+    you: Attribute[]
+}
+
 export interface World {
     concepts: Concept[]
-    attributes: Attribute[]
+    attributes: WorldAttributes
     manifesto: Manifesto
 }
 
@@ -33,4 +40,25 @@ export interface State {
     attributesDatabase: Attribute[]
 
     world: World
+}
+
+export interface Subject {
+    name: string
+
+    displayVariants: string[]
+}
+
+export interface Action {
+    verb: string
+    suffix?: string
+    modifiers?: string[]
+}
+
+export interface ActionModifier {
+    name: string
+}
+
+export interface Objekt {
+    name: string
+    applicableActions: string[]
 }

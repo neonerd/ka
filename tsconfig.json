@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
       "target": "es2018",                          
       "module": "esnext",
       "moduleResolution": "node",                     
@@ -8,8 +9,15 @@
       "strict": true,  
       "esModuleInterop": false,                 
       "outDir": "./dist",
-      "rootDir": "./"
-    }
-    ,
-    "include": ["./src/**/*.ts"]
+      "rootDir": "./",
+      "resolveJsonModule": true
+    },
+    "include": ["./src/**/*.ts"],
+    "ts-node": {
+      // these options are overrides used only by ts-node
+      // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
+      "compilerOptions": {
+        "module": "commonjs"
+      }
+    },
 }
