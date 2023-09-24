@@ -29,6 +29,7 @@ import { createButtonsElement, createDomElementWithIdAndClass, shuffle } from '.
 import { introTextTemplate, outroTextTemplate, questionTextTemplate, startTextTemplate } from './templates'
 import { fadeInElement, fadeOutElement } from './animations'
 import { composeManifestoHeading, getConceptsForChoice } from './logic'
+import { INTRO_TIMING, MANIFESTO_TIMING, OUTRO_TIMING } from './constants'
 
 // ===
 // === DOM
@@ -118,7 +119,7 @@ const startCurrentState = (s: State) => {
         fadeInElement(introEl).then(() => {
             setTimeout(() => {
                 finishCurrentState('', s)
-            }, 10000)
+            }, INTRO_TIMING)
         })
     }
 
@@ -170,10 +171,10 @@ const startCurrentState = (s: State) => {
         fadeInElement(manifestoEl).then(() => {
             setTimeout(() => {
                 finishCurrentState('', s)
-            }, 30000)
+            }, MANIFESTO_TIMING)
         })
     }
-    
+
     // OUTRO
     if (s.scene == 'outro') {
         console.log('StartCurrentState: Outro')
@@ -181,7 +182,7 @@ const startCurrentState = (s: State) => {
         fadeInElement(outroEl).then(() => {
             setTimeout(() => {
                 finishCurrentState('', s)
-            }, 30000)
+            }, OUTRO_TIMING)
         })
     }
 }
