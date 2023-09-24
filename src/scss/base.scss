@@ -43,6 +43,38 @@ body {
 }
 
 // ===
+// === START
+// ===
+.start {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 0;
+}
+
+.start-text {
+    color: var(--Text-Color, #7A28CB);
+    text-align: center;
+    font-family: Karla;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 50px;
+    
+    p {
+        margin-bottom: 50px;
+    }
+}
+
+// ===
 // === INTRO
 // ===
 

@@ -23,6 +23,7 @@ const actions: Action[] = [
 
     {verb: 'čte'},
     {verb: 'sleduje'},
+    {verb: 'poslouchá'},
     {verb: 'vnímá'},
     {verb: 'tvoří'},
     {verb: 'reflektuje'},
@@ -36,21 +37,24 @@ const actionModifiers: ActionModifier[] = [
     {name: 'vášnivěji'},
     {name: 'častěji'},
     {name: 'zapáleněji'},
-    {name: 'zapáleněji'},
     {name: 'radostněji'},
+    {name: 's větší vervou'},
+    {name: 's větší láskou'},
+    {name: 's větším nasazením'}
 ]
 
 const objects: Objekt[] = [
-    {name: 'spravedlnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje']},
-    {name: 'rovnoprávnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje']},
-    {name: 'svobodu', applicableActions: ['stávkuje', 'bojuje', 'pečuje']},
-    {name: 'nepodmíněný příjem', applicableActions: ['stávkuje', 'bojuje']},
+    {name: 'spravedlnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['spravedlnost']},
+    {name: 'rovnoprávnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['rovnoprávnost']},
+    {name: 'svobodu', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['svobodu']},
+    {name: 'nepodmíněný příjem', applicableActions: ['stávkuje', 'bojuje'], displayVariants: ['nepodmíněný příjem']},
     
-    {name: 'knihy', applicableActions: ['čte', 'vnímá', 'tvoří', 'reflektuje']},
-    {name: 'filmy', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje']},
+    {name: 'knihy', applicableActions: ['čte', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['knihy']},
+    {name: 'filmy', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['filmy']},
+    {name: 'hudbu', applicableActions: ['poslouchá', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['hudbu']},
 
-    {name: 'budovy', applicableActions: ['obsazuje']},
-    {name: 'přírodu', applicableActions: ['obsazuje', 'vnímá', 'sleduje', 'reflektuje']},
+    {name: 'budovy', applicableActions: ['obsazuje'], displayVariants: ['budovy']},
+    {name: 'přírodu', applicableActions: ['obsazuje', 'vnímá', 'sleduje', 'reflektuje'], displayVariants: ['přírodu']},
 ]
 
 export {

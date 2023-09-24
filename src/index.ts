@@ -26,7 +26,7 @@ import {
 
 import { clone } from 'rambda'
 import { createButtonsElement, createDomElementWithIdAndClass, shuffle } from './util'
-import { introTextTemplate, outroTextTemplate, questionTextTemplate } from './templates'
+import { introTextTemplate, outroTextTemplate, questionTextTemplate, startTextTemplate } from './templates'
 import { fadeInElement, fadeOutElement } from './animations'
 import { composeManifestoHeading, getConceptsForChoice } from './logic'
 
@@ -45,12 +45,20 @@ rootEl.appendChild(wrapperEl)
 
 // Sections
 
+// === Start
+const startEl = createDomElementWithIdAndClass('start', 'start', wrapperEl)
+const startTextEl = createDomElementWithIdAndClass('start-text', 'start-text', startEl)
+startTextEl.innerHTML = startTextTemplate
+const startButtonsGroup = createButtonsElement('start')
+startEl.appendChild(startButtonsGroup.buttonsEl)
+
 // === Intro
 const introEl = createDomElementWithIdAndClass('intro', 'intro', wrapperEl)
 const introTextEl = createDomElementWithIdAndClass('intro-text', 'intro-text', introEl)
 introTextEl.innerHTML = introTextTemplate
-const introButtonsGroup = createButtonsElement('intro')
-introEl.appendChild(introButtonsGroup.buttonsEl)
+
+// const introButtonsGroup = createButtonsElement('intro')
+// introEl.appendChild(introButtonsGroup.buttonsEl)
 
 // === Questions
 const questionsEl = createDomElementWithIdAndClass('questions', 'questions', wrapperEl)
@@ -98,11 +106,22 @@ outroEl.appendChild(outroButtonsGroup.buttonsEl)
 // ===
 
 const startCurrentState = (s: State) => {
+    //START
+    if (s.scene == 'start') {
+        console.log('StartCurrentState: Start')
+        fadeInElement(startEl)
+    }
+
     // INTRO
     if (s.scene == 'intro') {
         console.log('StartCurrentState: Intro')
-        fadeInElement(introEl)
+        fadeInElement(introEl).then(() => {
+            setTimeout(() => {
+                finishCurrentState('', s)
+            }, 10000)
+        })
     }
+
     // CHOICE
     if (s.scene == 'choice') {
         console.log('StartCurrentState: Choice')
@@ -120,26 +139,29 @@ const startCurrentState = (s: State) => {
         console.log('StartCurrentState: Manifesto')
 
         // Compose the manifesto
-        manifestoHeadingEl.innerHTML = composeManifestoHeading(s.world.concepts)
+
+        // TODO: Are we going to use concept names in heading?
+        // manifestoHeadingEl.innerHTML = composeManifestoHeading(s.world.concepts)
+        manifestoHeadingEl.innerHTML = ''
 
         if (s.world.concepts[0]) {
-            manifestoFirstParagraphEl.innerHTML = `Větička o pojmu ${s.world.concepts[0].name}.<br>Větička o tom, jak to vplývá na studentstvo.`
+            manifestoFirstParagraphEl.innerHTML = `${s.world.concepts[0].manifestoSentence}<br>Větička o tom, jak to vplývá na studentstvo.`
         }
 
         if (s.world.concepts[1]) {
-            manifestoSecondParagraphEl.innerHTML = `Větička o pojmu ${s.world.concepts[1].name}.<br>Větička o tom, jak to vplývá na umčo.`
+            manifestoSecondParagraphEl.innerHTML = `${s.world.concepts[1].manifestoSentence}<br>Větička o tom, jak to vplývá na umčo.`
         } else {
             manifestoSecondParagraphEl.innerHTML = ``
         }
 
         if (s.world.concepts[2]) {
-            manifestoThirdParagraphEl.innerHTML = `Větička o pojmu ${s.world.concepts[2].name}.<br>Větička o tom, jak to vplývá na společnost.`
+            manifestoThirdParagraphEl.innerHTML = `${s.world.concepts[2].manifestoSentence}<br>Větička o tom, jak to vplývá na společnost.`
         } else {
             manifestoThirdParagraphEl.innerHTML = ``
         }
 
         if (s.world.concepts[3]) {
-            manifestoFourthParagraphEl.innerHTML = `Větička o pojmu ${s.world.concepts[3].name}.<br>Větička o tom, jak to vplývá na mně.`
+            manifestoFourthParagraphEl.innerHTML = `${s.world.concepts[3].manifestoSentence}<br>Větička o tom, jak to vplývá na mně.`
         } else {
             manifestoFourthParagraphEl.innerHTML = ``
         }
@@ -148,19 +170,31 @@ const startCurrentState = (s: State) => {
         fadeInElement(manifestoEl).then(() => {
             setTimeout(() => {
                 finishCurrentState('', s)
-            }, 5000)
+            }, 30000)
         })
     }
+    
     // OUTRO
     if (s.scene == 'outro') {
         console.log('StartCurrentState: Outro')
 
-        fadeInElement(outroEl)
+        fadeInElement(outroEl).then(() => {
+            setTimeout(() => {
+                finishCurrentState('', s)
+            }, 30000)
+        })
     }
 }
 
 const finishCurrentState = (choice: string, s: State) => {
     console.log('FinishtCurrentState')
+
+    if (s.scene == 'start') {
+        fadeOutElement(startEl).then(() => {
+            s.scene = 'intro'
+            startCurrentState(s)
+        })
+    }
 
     // INTRO
     if (s.scene == 'intro') {
@@ -199,26 +233,30 @@ const finishCurrentState = (choice: string, s: State) => {
             }
         })        
     }
+
     // OUTRO
     if (s.scene == 'outro') {
         console.log('FinishtCurrentState: Outro')
 
-
+        fadeOutElement(outroEl)
     }
 }
 
 const handleInput = (e: KeyboardEvent, s: State) => {
     console.log(e.code)
 
-    // A
-    if (e.code == 'KeyA') {
-        finishCurrentState('A', s)
-    }
+    // We only allow input on selected scenes
+    if (s.scene == 'choice' || s.scene == 'start') {
+        // A
+        if (e.code == 'KeyA') {
+            finishCurrentState('A', s)
+        }
 
-    // B
-    if (e.code == 'KeyB') {
-        finishCurrentState('B', s)
-    }
+        // B
+        if (e.code == 'KeyB') {
+            finishCurrentState('B', s)
+        }
+    }    
 }
 
 // ===
@@ -248,7 +286,7 @@ const init = () => {
     console.log(concepts)
 
     const state: State = {
-        scene: 'intro',
+        scene: 'start',
         currentConcepts: [],
     
         conceptsDatabase: shuffle(clone(concepts)),

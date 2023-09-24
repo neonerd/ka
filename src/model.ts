@@ -33,7 +33,7 @@ export interface World {
 }
 
 export interface State {
-    scene: 'intro' | 'choice' | 'manifesto' | 'outro'
+    scene: 'start' | 'intro' | 'choice' | 'manifesto' | 'outro'
     currentConcepts: Concept[]
 
     conceptsDatabase: Concept[]
@@ -61,4 +61,5 @@ export interface ActionModifier {
 export interface Objekt {
     name: string
     applicableActions: string[]
+    displayVariants: string[]
 }
