@@ -19,6 +19,20 @@
 
 @font-face {
     font-family: 'Karla';
+    src: url('/fonts/Karla-Italic.ttf');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Karla';
+    src: url('/fonts/Karla-BoldItalic.ttf');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Karla';
     src: url('/fonts/Karla-ExtraBoldItalic.ttf');
     font-weight: 800;
     font-style: italic;

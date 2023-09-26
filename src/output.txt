@@ -1,0 +1,6 @@
+hello world
+        this is manifest
+        etc 
+        etc
+        etc
+        etc

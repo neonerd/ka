@@ -27,8 +27,8 @@ import {
 import { clone } from 'rambda'
 import { createButtonsElement, createDomElementWithIdAndClass, shuffle } from './util'
 import { introTextTemplate, outroTextTemplate, questionTextTemplate, startTextTemplate } from './templates'
-import { fadeInElement, fadeOutElement } from './animations'
-import { composeManifestoHeading, getConceptsForChoice } from './logic'
+import { fadeInElement, fadeOutElement, showElement } from './animations'
+import { composeManifestoHeading, getConceptsForChoice, getManifestoNumber, postManifesto } from './logic'
 import { INTRO_TIMING, MANIFESTO_TIMING, OUTRO_TIMING } from './constants'
 
 // ===
@@ -82,15 +82,33 @@ const manifestoFirstParagraphEl = createDomElementWithIdAndClass('manifesto-1-p'
 const manifestoSecondParagraphEl = createDomElementWithIdAndClass('manifesto-2-p', 'manifesto-paragraph', manifestoTextEl)
 const manifestoThirdParagraphEl = createDomElementWithIdAndClass('manifesto-3-p', 'manifesto-paragraph', manifestoTextEl)
 const manifestoFourthParagraphEl = createDomElementWithIdAndClass('manifesto-4-p', 'manifesto-paragraph', manifestoTextEl)
+const manifestoFirst2ParagraphEl = createDomElementWithIdAndClass('manifesto-1-p-2', 'manifesto-paragraph-2', manifestoTextEl)
+const manifestoSecond2ParagraphEl = createDomElementWithIdAndClass('manifesto-2-p-2', 'manifesto-paragraph-2', manifestoTextEl)
+const manifestoThird2ParagraphEl = createDomElementWithIdAndClass('manifesto-3-p-2', 'manifesto-paragraph-2', manifestoTextEl)
+const manifestoFourth2ParagraphEl = createDomElementWithIdAndClass('manifesto-4-p-2', 'manifesto-paragraph-2', manifestoTextEl)
 
 manifestoHeadingEl.innerHTML = 'kontinuita | supervize | konference | sebareflexe'
-manifestoFirstParagraphEl.innerHTML = `Učím efektivněji a lépe si plánuju výuku.<br>Studentstvo je sebevědomejší.`
-manifestoSecondParagraphEl.innerHTML = `Dostal jsem supervizi.<br>Studentské umění je jedinečnejší.`
-manifestoThirdParagraphEl.innerHTML = `Zorganizovali jsme studentskou konferenci.<br>Lidé víc vnímajú modrou barvu.`
-manifestoFourthParagraphEl.innerHTML = `Reflektuji své pedagogické metody.<br>Jsem klidnější.`
+manifestoFirstParagraphEl.innerHTML = `Učím efektivněji a lépe si plánuju výuku.`
+manifestoSecondParagraphEl.innerHTML = `Dostal jsem supervizi.`
+manifestoThirdParagraphEl.innerHTML = `Zorganizovali jsme studentskou konferenci.`
+manifestoFourthParagraphEl.innerHTML = `Reflektuji své pedagogické metody.`
+manifestoFirst2ParagraphEl.innerHTML = `Studentstvo je sebevědomejší.`
+manifestoSecond2ParagraphEl.innerHTML = `Studentské umění je jedinečnejší.`
+manifestoThird2ParagraphEl.innerHTML = `Lidé víc vnímajú modrou barvu.`
+manifestoFourth2ParagraphEl.innerHTML = `Jsem klidnější.`
 
 // === Outro
 const outroEl = createDomElementWithIdAndClass('outro', 'outro', wrapperEl)
+
+const outroManifestConceptEl1 = createDomElementWithIdAndClass('outro-manifest-concept-1', 'outro-manifest-concept', outroEl)
+const outroManifestConceptEl2 = createDomElementWithIdAndClass('outro-manifest-concept-2', 'outro-manifest-concept', outroEl)
+const outroManifestConceptEl3 = createDomElementWithIdAndClass('outro-manifest-concept-3', 'outro-manifest-concept', outroEl)
+const outroManifestConceptEl4 = createDomElementWithIdAndClass('outro-manifest-concept-4', 'outro-manifest-concept', outroEl)
+
+outroManifestConceptEl1.innerHTML = 'kontinuita'
+outroManifestConceptEl2.innerHTML = 'supervize'
+outroManifestConceptEl3.innerHTML = 'struktura'
+outroManifestConceptEl4.innerHTML = 'stáže'
 
 const outroTextEl = createDomElementWithIdAndClass('outro-text', 'outro-text', outroEl)
 outroTextEl.innerHTML = outroTextTemplate
@@ -106,7 +124,8 @@ outroEl.appendChild(outroButtonsGroup.buttonsEl)
 // === FUNCTIONS
 // ===
 
-const startCurrentState = (s: State) => {
+
+const startCurrentState = async (s: State) => {
     //START
     if (s.scene == 'start') {
         console.log('StartCurrentState: Start')
@@ -146,40 +165,95 @@ const startCurrentState = (s: State) => {
         manifestoHeadingEl.innerHTML = ''
 
         if (s.world.concepts[0]) {
-            manifestoFirstParagraphEl.innerHTML = `${s.world.concepts[0].manifestoSentence}<br>Větička o tom, jak to vplývá na studentstvo.`
+            manifestoFirstParagraphEl.innerHTML = `${s.world.concepts[0].manifestoSentence}`
+            manifestoFirst2ParagraphEl.innerHTML = `Větička o tom, jak to vplývá na studentstvo.`
         }
 
         if (s.world.concepts[1]) {
-            manifestoSecondParagraphEl.innerHTML = `${s.world.concepts[1].manifestoSentence}<br>Větička o tom, jak to vplývá na umčo.`
+            manifestoSecondParagraphEl.innerHTML = `${s.world.concepts[1].manifestoSentence}`
+            manifestoSecond2ParagraphEl.innerHTML = `Větička o tom, jak to vplývá na umění.`
         } else {
             manifestoSecondParagraphEl.innerHTML = ``
+            manifestoSecond2ParagraphEl.innerHTML = ``
         }
 
         if (s.world.concepts[2]) {
-            manifestoThirdParagraphEl.innerHTML = `${s.world.concepts[2].manifestoSentence}<br>Větička o tom, jak to vplývá na společnost.`
+            manifestoThirdParagraphEl.innerHTML = `${s.world.concepts[2].manifestoSentence}`
+            manifestoThird2ParagraphEl.innerHTML = `Větička o tom, jak to vplývá na společnost.`
         } else {
             manifestoThirdParagraphEl.innerHTML = ``
+            manifestoThird2ParagraphEl.innerHTML = ``
         }
 
         if (s.world.concepts[3]) {
-            manifestoFourthParagraphEl.innerHTML = `${s.world.concepts[3].manifestoSentence}<br>Větička o tom, jak to vplývá na mně.`
+            manifestoFourthParagraphEl.innerHTML = `${s.world.concepts[3].manifestoSentence}`
+            manifestoFourth2ParagraphEl.innerHTML = `Větička o tom, jak to vplývá na mně.`
         } else {
             manifestoFourthParagraphEl.innerHTML = ``
+            manifestoFourth2ParagraphEl.innerHTML = ``
         }
 
         // Fade in UI
-        fadeInElement(manifestoEl).then(() => {
-            setTimeout(() => {
-                finishCurrentState('', s)
-            }, MANIFESTO_TIMING)
-        })
+        showElement(manifestoEl)
+
+        await fadeInElement(manifestoFirstParagraphEl)
+        await fadeInElement(manifestoFirst2ParagraphEl)
+
+        if (s.world.concepts[1]) {
+            await fadeInElement(manifestoSecondParagraphEl)
+            await fadeInElement(manifestoSecond2ParagraphEl)
+        }
+        if (s.world.concepts[2]) {
+            await fadeInElement(manifestoThirdParagraphEl)
+            await fadeInElement(manifestoThird2ParagraphEl)
+        }
+        if (s.world.concepts[3]) {
+            await fadeInElement(manifestoFourthParagraphEl)
+            await fadeInElement(manifestoFourth2ParagraphEl)
+        }
+
+        setTimeout(() => {
+            finishCurrentState('', s)
+        }, MANIFESTO_TIMING)
     }
 
     // OUTRO
     if (s.scene == 'outro') {
         console.log('StartCurrentState: Outro')
 
-        fadeInElement(outroEl).then(() => {
+        if (s.world.concepts[0]) {
+            outroManifestConceptEl1.innerHTML = `${s.world.concepts[0].name}`
+        }
+        if (s.world.concepts[1]) {
+            outroManifestConceptEl2.innerHTML = `${s.world.concepts[1].name}`
+        }
+        if (s.world.concepts[2]) {
+            outroManifestConceptEl3.innerHTML = `${s.world.concepts[2].name}`
+        }
+        if (s.world.concepts[3]) {
+            outroManifestConceptEl4.innerHTML = `${s.world.concepts[3].name}`
+        }
+
+        // Get manifesto number
+        const manifestoNumber = await getManifestoNumber()
+        outroTextEl.innerHTML = `<p>Vaše manifesto #${manifestoNumber} se tiskne.</p>`
+
+        // Show the element
+        showElement(outroEl)
+
+        // Start fading
+        fadeInElement(outroManifestConceptEl1).then(() => {
+            return fadeInElement(outroManifestConceptEl2)
+        }).then(() => {
+            return fadeInElement(outroManifestConceptEl3)
+        }).then(() => {
+            return fadeInElement(outroManifestConceptEl4)
+        }).then(() => {
+            return fadeInElement(outroTextEl)
+        }).then(() => {
+            // Print
+
+            // Finish after timing
             setTimeout(() => {
                 finishCurrentState('', s)
             }, OUTRO_TIMING)
@@ -282,9 +356,7 @@ const init = () => {
         manifesto: {
             concepts: []
         }
-    }
-    
-    console.log(concepts)
+    }    
 
     const state: State = {
         scene: 'outro',

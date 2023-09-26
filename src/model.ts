@@ -14,6 +14,11 @@ export interface Manifesto {
 
 export type AttributeType = 'students' | 'art' | 'society' | 'you'
 
+export interface DisplayVariant {
+    text: string
+    weight: number
+}
+
 export interface Attribute {
     type: AttributeType
     name: string
@@ -45,7 +50,7 @@ export interface State {
 export interface Subject {
     name: string
 
-    displayVariants: string[]
+    displayVariants: DisplayVariant[]
 }
 
 export interface Action {
@@ -62,4 +67,5 @@ export interface Objekt {
     name: string
     applicableActions: string[]
     displayVariants: string[]
+    applicableSubjects: string[]
 }

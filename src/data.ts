@@ -12,17 +12,43 @@ const concepts: Concept[] = conceptsJson
 //  These are forgiving past wrong (or unfixing the fixed past) and promising future benefit (or fixing the unfixed future)
 //
 
+const replacementTokens: Record<string, string[]> = {
+    '#personMName#': ['Petr', 'Jakub', 'Jan', 'Vít'],
+    '#personFName#': ['Anna', 'Marie', 'Nora', 'Eva'],
+    '#personNBName#': ['Ilja', 'Alex', 'Nikola', 'Jindra', 'Robin']
+}
+
 const subjects: Subject[] = [
     {
         name: 'studentstvo', 
         displayVariants: [
-            'studentstvo', 
-            'moje studentstvo', 
-            'moje studentka Marie',
-            'můj student Petr', 
-            'moje studentstvo Ilja'
+            {text: 'studentstvo', weight: 30}, 
+            {text: 'moje studentstvo', weight: 30}, 
+            {text: 'moje studentka #personFName#', weight: 5},
+            {text: 'můj student #personMName#', weight: 5}, 
+            {text: 'moje studentstvo #personNBName#', weight: 5}
         ]
     },
+    {
+        name: 'umění',
+        displayVariants: [
+            {text: 'studentská tvorba', weight: 10},
+            {text: 'studentské umění', weight: 10}
+        ]
+    },
+    {
+        name: 'společnost',
+        displayVariants: [
+            {text: 'lidstvo', weight: 1},
+            {text: 'společnost', weight: 1},
+        ]
+    },
+    {
+        name: 'já',
+        displayVariants: [
+            {text: 'já', weight: 1}
+        ]
+    }
 ]
 
 const actions: Action[] = [
@@ -39,7 +65,7 @@ const actions: Action[] = [
     {verb: 'čte'},
     {verb: 'vidí'},
     {verb: 'slyší'},
-    {verb: 'hledá'},
+    {verb: 'hledá', suffix: 'nové'},
     {verb: 'sleduje'},
     {verb: 'poslouchá'},
     {verb: 'vnímá'},
@@ -61,6 +87,20 @@ const actions: Action[] = [
     {verb: 'generuje'},
     {verb: 'dekonstruuje'},
     {verb: 'provokuje'},
+
+    // ===
+    // === UMĚNÍ
+    // ==
+
+    // ===
+    // === JÁ
+    // ===
+
+    {verb: 'jsem'},
+    {verb: 'cítím'},
+    {verb: 'přemýšlím', suffix: 'o'},
+    {verb: 'hledám', suffix: 'nové'}
+
 ]
 
 const actionModifiers: ActionModifier[] = [
@@ -77,56 +117,61 @@ const actionModifiers: ActionModifier[] = [
 
 const objects: Objekt[] = [
 
+    // ===
+    // STUDENTSTVO A LIDI
+    // ===
+
     // SPOLEČENSKÁ ROVINA
-    {name: 'spravedlnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['spravedlnost']},
-    {name: 'rovnoprávnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['rovnoprávnost']},
-    {name: 'svobodu', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['svobodu']},
-    {name: 'bezpečí', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['bezpečí']},
-    {name: 'úctu', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['úctu']},
-    {name: 'ekonomickou soběstačnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['ekonomickou soběstačnost']},
-    {name: 'nepodmíněný příjem', applicableActions: ['stávkuje', 'bojuje'], displayVariants: ['nepodmíněný příjem']},
-    {name: 'budovy', applicableActions: ['obsazuje'], displayVariants: ['budovy']},
-    {name: 'věřejný prostor', applicableActions: ['obsazuje', 'vnímá', 'sleduje', 'reflektuje'], displayVariants: ['věřejný prostor']},
+    {name: 'spravedlnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['spravedlnost'], applicableSubjects: ['studentstvo']},
+    {name: 'rovnoprávnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['rovnoprávnost'], applicableSubjects: ['studentstvo']},
+    {name: 'svobodu', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['svobodu'], applicableSubjects: ['studentstvo']},
+    {name: 'bezpečí', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['bezpečí'], applicableSubjects: ['studentstvo']},
+    {name: 'úctu', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['úctu'], applicableSubjects: ['studentstvo']},
+    {name: 'ekonomickou soběstačnost', applicableActions: ['stávkuje', 'bojuje'], displayVariants: ['ekonomickou soběstačnost'], applicableSubjects: ['studentstvo']},
+    {name: 'nepodmíněný příjem', applicableActions: ['stávkuje', 'bojuje'], displayVariants: ['nepodmíněný příjem'], applicableSubjects: ['studentstvo']},
+    {name: 'budovy', applicableActions: ['obsazuje'], displayVariants: ['budovy'], applicableSubjects: ['studentstvo']},
+    {name: 'věřejný prostor', applicableActions: ['obsazuje', 'vnímá', 'sleduje', 'reflektuje'], displayVariants: ['věřejný prostor'], applicableSubjects: ['studentstvo']},
 
     // UMĚNÍ
-    {name: 'knihy', applicableActions: ['čte', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['knihy']},
-    {name: 'filmy', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['filmy']},
-    {name: 'hudbu', applicableActions: ['poslouchá', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['hudbu']},
-    {name: 'architekturu', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['architekturu']},
-    {name: 'videohry', applicableActions: ['hraje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['videohry']},
-    {name: 'performance', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['performance']},
-    {name: 'malby', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['malby', 'obrazy', 'výtvarné umění']},
-    {name: 'videoart', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['videoart', 'umění pohyblivého obrazu']},
+    {name: 'knihy', applicableActions: ['čte', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['knihy'], applicableSubjects: ['studentstvo']},
+    {name: 'filmy', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['filmy'], applicableSubjects: ['studentstvo']},
+    {name: 'hudbu', applicableActions: ['poslouchá', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['hudbu'], applicableSubjects: ['studentstvo']},
+    {name: 'architekturu', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['architekturu'], applicableSubjects: ['studentstvo']},
+    {name: 'videohry', applicableActions: ['hraje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['videohry'], applicableSubjects: ['studentstvo']},
+    {name: 'performance', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['performance'], applicableSubjects: ['studentstvo']},
+    {name: 'malby', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['malby', 'obrazy', 'výtvarné umění'], applicableSubjects: ['studentstvo']},
+    {name: 'videoart', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['videoart', 'umění pohyblivého obrazu'], applicableSubjects: ['studentstvo']},
 
     // PŘÍRODA
-    {name: 'přírodu', applicableActions: ['obsazuje', 'vnímá', 'sleduje', 'reflektuje'], displayVariants: ['přírodu']},
-    {name: 'kopce', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['kopce']},
-    {name: 'doliny', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['doliny']},
-    {name: 'stromy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['stromy']},
-    {name: 'rostliny', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['rostliny']},
-    {name: 'řeky', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['řeky']},
-    {name: 'hory', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['hory']},
-    {name: 'louky', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['louky']},
-    {name: 'lesy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['lesy']},
-    {name: 'oblaka', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['oblaka']},
-    {name: 'kamínky', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['kamínky']},
-    {name: 'hvězdy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['hvězdy']},
-    {name: 'zvířata', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['zvířata']},
-    {name: 'ryby', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['ryby']},
-    {name: 'hmyz', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['hmyz']},
-    {name: 'ptáky', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['ptáky', 'ptáčky']},
-    {name: 'mech', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['mech']},
+    {name: 'přírodu', applicableActions: ['obsazuje', 'vnímá', 'sleduje', 'reflektuje'], displayVariants: ['přírodu'], applicableSubjects: ['studentstvo']},
+    {name: 'kopce', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['kopce'], applicableSubjects: ['studentstvo']},
+    {name: 'doliny', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['doliny'], applicableSubjects: ['studentstvo']},
+    {name: 'stromy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['stromy'], applicableSubjects: ['studentstvo']},
+    {name: 'rostliny', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['rostliny'], applicableSubjects: ['studentstvo']},
+    {name: 'řeky', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['řeky'], applicableSubjects: ['studentstvo']},
+    {name: 'hory', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['hory'], applicableSubjects: ['studentstvo']},
+    {name: 'louky', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['louky'], applicableSubjects: ['studentstvo']},
+    {name: 'lesy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['lesy'], applicableSubjects: ['studentstvo']},
+    {name: 'oblaka', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['oblaka'], applicableSubjects: ['studentstvo']},
+    {name: 'kamínky', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['kamínky'], applicableSubjects: ['studentstvo']},
+    {name: 'hvězdy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['hvězdy'], applicableSubjects: ['studentstvo']},
+    {name: 'zvířata', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['zvířata'], applicableSubjects: ['studentstvo']},
+    {name: 'ryby', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['ryby'], applicableSubjects: ['studentstvo']},
+    {name: 'hmyz', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['hmyz'], applicableSubjects: ['studentstvo']},
+    {name: 'ptáky', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['ptáky', 'ptáčky'], applicableSubjects: ['studentstvo']},
+    {name: 'mech', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['mech'], applicableSubjects: ['studentstvo']},
 
     // EVENTY
-    {name: 'stávky', applicableActions: ['organizuje'], displayVariants: ['stávky']},
-    {name: 'výstavy', applicableActions: ['organizuje'], displayVariants: ['výstavy']},
-    {name: 'konference', applicableActions: ['organizuje'], displayVariants: ['konference']},
-    {name: 'koncerty', applicableActions: ['organizuje'], displayVariants: ['koncerty']},
-    {name: 'festivaly', applicableActions: ['organizuje'], displayVariants: ['festivaly']},
-    {name: 'diskuze', applicableActions: ['organizuje'], displayVariants: ['diskuze']},
-    {name: 'protesty', applicableActions: ['organizuje'], displayVariants: ['protesty']},
-    {name: 'demonstrace', applicableActions: ['organizuje'], displayVariants: ['demonstrace']},
+    {name: 'stávky', applicableActions: ['organizuje'], displayVariants: ['stávky'], applicableSubjects: ['studentstvo']},
+    {name: 'výstavy', applicableActions: ['organizuje'], displayVariants: ['výstavy'], applicableSubjects: ['studentstvo']},
+    {name: 'konference', applicableActions: ['organizuje'], displayVariants: ['konference'], applicableSubjects: ['studentstvo']},
+    {name: 'koncerty', applicableActions: ['organizuje'], displayVariants: ['koncerty'], applicableSubjects: ['studentstvo']},
+    {name: 'festivaly', applicableActions: ['organizuje'], displayVariants: ['festivaly'], applicableSubjects: ['studentstvo']},
+    {name: 'diskuze', applicableActions: ['organizuje'], displayVariants: ['diskuze'], applicableSubjects: ['studentstvo']},
+    {name: 'protesty', applicableActions: ['organizuje'], displayVariants: ['protesty'], applicableSubjects: ['studentstvo']},
+    {name: 'demonstrace', applicableActions: ['organizuje'], displayVariants: ['demonstrace'], applicableSubjects: ['studentstvo']},
 
+    //
     // vidí jinak tvary
     // slyší jinak tóny
     // hledá nové příběhy
@@ -137,42 +182,54 @@ const objects: Objekt[] = [
     // 
 
     // ABSTRAKTNĚJŠÍ KONCEPTY
-    {name: 'barvu', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['modrou barvu', 'žlutou barvu', 'červenou barvu', 'zelenou barvu', 'fialovou barvu', 'černou barvu', 'bílou barvu', 'šedou barvu', 'hnědou barvu', 'růžovou barvu', 'oranžovou barvu']},
-    {name: 'tvary', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['tvary']},
-    {name: 'barvy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['barvy']},
-    {name: 'tóny', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['tóny']},
-    {name: 'příběhy', applicableActions: ['vnímá', 'tvoří', 'sleduje', 'reflektuje'], displayVariants: ['příběhy']},
-    {name: 'slova', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['slova']},
-    {name: 'své činy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['své činy', 'své konání']},
-    {name: 'pocity', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['pocity', 'své pocity', 'pocity jiných']},
-    {name: 'myšlenky', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['myšlenky', 'své myšlenky', 'myšlenky jiných']},
+    {name: 'barvu', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['modrou barvu', 'žlutou barvu', 'červenou barvu', 'zelenou barvu', 'fialovou barvu', 'černou barvu', 'bílou barvu', 'šedou barvu', 'hnědou barvu', 'růžovou barvu', 'oranžovou barvu'], applicableSubjects: ['studentstvo']},
+    {name: 'tvary', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['tvary'], applicableSubjects: ['studentstvo']},
+    {name: 'barvy', applicableActions: ['vnímá', 'sleduje', 'reflektuje', 'vidí'], displayVariants: ['barvy'], applicableSubjects: ['studentstvo']},
+    {name: 'tóny', applicableActions: ['slyší', 'vnímá'], displayVariants: ['tóny'], applicableSubjects: ['studentstvo']},
+    {name: 'příběhy', applicableActions: ['vnímá', 'tvoří', 'sleduje', 'reflektuje', 'hledá'], displayVariants: ['příběhy'], applicableSubjects: ['studentstvo']},
+    {name: 'slova', applicableActions: ['vnímá', 'sleduje', 'reflektuje', 'slyší'], displayVariants: ['slova'], applicableSubjects: ['studentstvo']},
+    {name: 'své činy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['své činy', 'své konání'], applicableSubjects: ['studentstvo']},
+    {name: 'pocity', applicableActions: ['vnímá', 'sleduje', 'reflektuje', 'hledá'], displayVariants: ['pocity', 'své pocity', 'pocity jiných'], applicableSubjects: ['studentstvo']},
+    {name: 'myšlenky', applicableActions: ['vnímá', 'sleduje', 'reflektuje', 'hledá'], displayVariants: ['myšlenky', 'své myšlenky', 'myšlenky jiných'], applicableSubjects: ['studentstvo']},
 
     // == LIDSKÉ VĚCI
 
     // TĚLESNO
-    {name: 'doteky', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['doteky']},
-    {name: 'blízkost', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['blízkost']},
-    {name: 'vůně', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['vůně']},
-    {name: 'hlasy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['hlasy']},
-    {name: 'vlasy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['vlasy']},
-    {name: 'oči', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['oči']},
-    {name: 'pokožku', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['pokožku']},
-    {name: 'tělo', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['tělo']},
-    {name: 'chůzi', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['chůzi']},
-    {name: 'dech', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['dech']},
-    {name: 'pohyb', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['pohyb']},
+    {name: 'doteky', applicableActions: ['vnímá', 'sleduje', 'reflektuje', 'hledá'], displayVariants: ['doteky'], applicableSubjects: ['studentstvo']},
+    {name: 'blízkost', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['blízkost'], applicableSubjects: ['studentstvo']},
+    {name: 'vůně', applicableActions: ['vnímá', 'sleduje', 'reflektuje', 'hledá'], displayVariants: ['vůně'], applicableSubjects: ['studentstvo']},
+    {name: 'hlasy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['hlasy'], applicableSubjects: ['studentstvo']},
+    {name: 'vlasy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['vlasy'], applicableSubjects: ['studentstvo']},
+    {name: 'oči', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['oči'], applicableSubjects: ['studentstvo']},
+    {name: 'pokožku', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['pokožku'], applicableSubjects: ['studentstvo']},
+    {name: 'tělo', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['tělo'], applicableSubjects: ['studentstvo']},
+    {name: 'chůzi', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['chůzi'], applicableSubjects: ['studentstvo']},
+    {name: 'dech', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['dech'], applicableSubjects: ['studentstvo']},
+    {name: 'pohyb', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['pohyb'], applicableSubjects: ['studentstvo']},
 
     // VZTAHY
-    {name: 'jiné lidi', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['jiné lidi']},
-    {name: 'své přátelstvo', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['své přátelstvo']},
-    {name: 'svou rodinu', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['svou rodinu']},
-    {name: 'komunitu', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['komunitu']},
-    {name: 'vztahy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['vztahy', 'mezilidské vztahy', 'partnerské vztahy', 'romantické vztahy']},
-    {name: 'lásku', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['lásku']},
+    {name: 'jiné lidi', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['jiné lidi'], applicableSubjects: ['studentstvo']},
+    {name: 'své přátelstvo', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['své přátelstvo'], applicableSubjects: ['studentstvo']},
+    {name: 'svou rodinu', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['svou rodinu'], applicableSubjects: ['studentstvo']},
+    {name: 'komunitu', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['komunitu'], applicableSubjects: ['studentstvo']},
+    {name: 'vztahy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['vztahy', 'mezilidské vztahy', 'partnerské vztahy', 'romantické vztahy'], applicableSubjects: ['studentstvo']},
+    {name: 'lásku', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['lásku'], applicableSubjects: ['studentstvo']},
+
+    // ===
+    // === UMĚNÍ
+    // ===
+
+    // ===
+    // === JÁ
+    // ===
+    {name: 'klidnější', applicableActions: ['jsem'], displayVariants: ['klidnější'], applicableSubjects: ['já']},
+    {name: 'spokojenější', applicableActions: ['jsem'], displayVariants: ['spokojenější'], applicableSubjects: ['já']},
 
 ]
 
 export {
+    replacementTokens,
+
     categories,
     concepts,
     attributes,

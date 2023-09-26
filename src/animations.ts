@@ -1,3 +1,8 @@
+export function showElement (el: HTMLElement, display = 'flex') {
+    el.style.opacity = '1'
+    el.style.display = display
+}
+
 export function fadeInElement (el: HTMLElement, time = 4000, display = 'flex') {
     return new Promise((resolve) => {
         el.style.transition = `all ${time}ms`
