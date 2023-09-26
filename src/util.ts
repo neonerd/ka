@@ -1,4 +1,4 @@
-import { shuffle as shuffleRandomJs, nativeMath } from 'random-js'
+import { shuffle as shuffleRandomJs, pick as pickRandomJs, nativeMath } from 'random-js'
 
 export function createDomElementWithIdAndClass(id: string, className: string, appendTo?: HTMLElement) {
     const element = document.createElement('div');
@@ -26,4 +26,8 @@ export function createButtonsElement (id: string) {
 
 export function shuffle<T>(array: T[]): T[] {
     return shuffleRandomJs(nativeMath, array)
-  }
+}
+
+export function pick<T>(array: T[]): T {
+    return pickRandomJs(nativeMath, array)
+}

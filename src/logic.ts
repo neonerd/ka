@@ -1,7 +1,7 @@
 import {clone} from 'rambda'
 
 import { Action, ActionModifier, Concept, Objekt, State, Subject } from "./model"
-import { shuffle } from "./util"
+import { shuffle, pick } from "./util"
 import { capitalize } from "./strings"
 
 export function getConceptsForChoice (state: State) {
@@ -34,16 +34,16 @@ export function generateAction (subject: Subject, actions: Action[], actionModif
     const availableSubjectVariants = shuffle(clone(subject.displayVariants))
     const subjectVariant = availableSubjectVariants[0]
 
+    // Select an object
+    const availableObjects = shuffle(clone(objects))
+    const object = availableObjects[0]
+
     // Select an action
-    const availableActions = shuffle(clone(actions))
+    const availableActions = shuffle(clone(actions).filter(a => object.applicableActions.indexOf(a.verb) > -1))
     const action = availableActions[0]
 
     const availableActionModifiers = shuffle(clone(actionModifiers))
-    const actionModifier = availableActionModifiers[0]
-
-    // Select an object
-    const availableObjects = shuffle(clone(objects).filter(o => o.applicableActions.includes(action.verb)))
-    const object = availableObjects[0]
+    const actionModifier = availableActionModifiers[0]    
 
     // Create the sentence
     // Subject
@@ -57,7 +57,7 @@ export function generateAction (subject: Subject, actions: Action[], actionModif
     }
     
     // Object
-    sentenceTokens.push(object.name)
+    sentenceTokens.push(pick(object.displayVariants))
 
     return sentenceTokens.join(' ') + '.'
 }

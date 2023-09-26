@@ -287,7 +287,7 @@ const init = () => {
     console.log(concepts)
 
     const state: State = {
-        scene: 'start',
+        scene: 'outro',
         currentConcepts: [],
     
         conceptsDatabase: shuffle(clone(concepts)),
