@@ -36,7 +36,8 @@ export default {
 
         copy({
             targets: [
-                { src: 'vendor/fonts', dest: 'dist' }
+                { src: 'vendor/fonts', dest: 'dist' },
+                { src: 'vendor/sounds', dest: 'dist' }
             ]
         }),
 

@@ -121,9 +121,52 @@ outroEl.appendChild(outroButtonsGroup.buttonsEl)
 // ===
 
 // ===
+// === SOUND
+// ===
+import { Howl } from 'howler'
+
+const soundBank = {
+    'MANIFEST_INTRO': new Howl({
+        src: ['/sounds/MANIFEST_INTRO.wav'],
+        autoplay: false
+    }),
+    'MANIFEST_MANIFEST_1': new Howl({
+        src: ['/sounds/MANIFEST_MANIFEST_1.wav'],
+        autoplay: false
+    }),
+    'MANIFEST_MANIFEST_2': new Howl({
+        src: ['/sounds/MANIFEST_MANIFEST_2.wav'],
+        autoplay: false
+    }),
+    'MANIFEST_MANIFEST_3': new Howl({
+        src: ['/sounds/MANIFEST_MANIFEST_3.wav'],
+        autoplay: false
+    }),
+    'MANIFEST_MANIFEST_4': new Howl({
+        src: ['/sounds/MANIFEST_MANIFEST_4.wav'],
+        autoplay: false
+    }),
+    'MANIFEST_POJMY_1': new Howl({
+        src: ['/sounds/MANIFEST_POJMY_1.wav'],
+        autoplay: false
+    }),
+    'MANIFEST_POJMY_2': new Howl({
+        src: ['/sounds/MANIFEST_POJMY_2.wav'],
+        autoplay: false
+    }),
+    'MANIFEST_POJMY_3': new Howl({
+        src: ['/sounds/MANIFEST_POJMY_3.wav'],
+        autoplay: false
+    }),
+    'MANIFEST_POJMY_4': new Howl({
+        src: ['/sounds/MANIFEST_POJMY_4.wav'],
+        autoplay: false
+    })
+}
+
+// ===
 // === FUNCTIONS
 // ===
-
 
 const startCurrentState = async (s: State) => {
     //START
@@ -135,6 +178,9 @@ const startCurrentState = async (s: State) => {
     // INTRO
     if (s.scene == 'intro') {
         console.log('StartCurrentState: Intro')
+
+        soundBank.MANIFEST_INTRO.play()
+
         fadeInElement(introEl).then(() => {
             setTimeout(() => {
                 finishCurrentState('', s)
@@ -145,6 +191,9 @@ const startCurrentState = async (s: State) => {
     // CHOICE
     if (s.scene == 'choice') {
         console.log('StartCurrentState: Choice')
+
+        // @ts-ignore
+        soundBank[`MANIFEST_POJMY_${s.world.concepts.length+1}`].play()
         
         // Choose concepts and assign them to questions
         getConceptsForChoice(s)
@@ -157,6 +206,10 @@ const startCurrentState = async (s: State) => {
     // MANIFESTO
     if (s.scene == 'manifesto') {
         console.log('StartCurrentState: Manifesto')
+
+        // Play the sound
+        // @ts-ignore
+        soundBank[`MANIFEST_MANIFEST_${s.world.concepts.length+1}`].play()
 
         // Compose the manifesto
 
@@ -359,7 +412,7 @@ const init = () => {
     }    
 
     const state: State = {
-        scene: 'outro',
+        scene: 'start',
         currentConcepts: [],
     
         conceptsDatabase: shuffle(clone(concepts)),
