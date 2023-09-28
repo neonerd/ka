@@ -8,6 +8,9 @@ let i = 0
 
 while (i < ATTEMPTS) {
     console.log(generateAction(subjects[0], actions, actionModifiers, objects))
+    console.log(generateAction(subjects[1], actions, actionModifiers, objects))
+    console.log(generateAction(subjects[2], actions, actionModifiers, objects))
+    console.log(generateAction(subjects[3], actions, actionModifiers, objects))
     
     i++
 }

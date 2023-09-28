@@ -27,7 +27,7 @@ import {
 import { clone } from 'rambda'
 import { createButtonsElement, createDomElementWithIdAndClass, shuffle } from './util'
 import { introTextTemplate, outroTextTemplate, questionTextTemplate, startTextTemplate } from './templates'
-import { fadeInElement, fadeOutElement, showElement } from './animations'
+import { fadeInElement, fadeOutElement, hideElement, showElement } from './animations'
 import { composeManifestoHeading, getConceptsForChoice, getManifestoNumber, postManifesto } from './logic'
 import { INTRO_TIMING, MANIFESTO_TIMING, OUTRO_TIMING } from './constants'
 
@@ -79,12 +79,15 @@ const manifestoTextEl = createDomElementWithIdAndClass('manifesto-text', 'manife
 
 const manifestoHeadingEl = createDomElementWithIdAndClass('manifesto-heading', 'manifesto-heading', manifestoTextEl)
 const manifestoFirstParagraphEl = createDomElementWithIdAndClass('manifesto-1-p', 'manifesto-paragraph', manifestoTextEl)
-const manifestoSecondParagraphEl = createDomElementWithIdAndClass('manifesto-2-p', 'manifesto-paragraph', manifestoTextEl)
-const manifestoThirdParagraphEl = createDomElementWithIdAndClass('manifesto-3-p', 'manifesto-paragraph', manifestoTextEl)
-const manifestoFourthParagraphEl = createDomElementWithIdAndClass('manifesto-4-p', 'manifesto-paragraph', manifestoTextEl)
 const manifestoFirst2ParagraphEl = createDomElementWithIdAndClass('manifesto-1-p-2', 'manifesto-paragraph-2', manifestoTextEl)
+
+const manifestoSecondParagraphEl = createDomElementWithIdAndClass('manifesto-2-p', 'manifesto-paragraph', manifestoTextEl)
 const manifestoSecond2ParagraphEl = createDomElementWithIdAndClass('manifesto-2-p-2', 'manifesto-paragraph-2', manifestoTextEl)
+
+const manifestoThirdParagraphEl = createDomElementWithIdAndClass('manifesto-3-p', 'manifesto-paragraph', manifestoTextEl)
 const manifestoThird2ParagraphEl = createDomElementWithIdAndClass('manifesto-3-p-2', 'manifesto-paragraph-2', manifestoTextEl)
+
+const manifestoFourthParagraphEl = createDomElementWithIdAndClass('manifesto-4-p', 'manifesto-paragraph', manifestoTextEl)
 const manifestoFourth2ParagraphEl = createDomElementWithIdAndClass('manifesto-4-p-2', 'manifesto-paragraph-2', manifestoTextEl)
 
 manifestoHeadingEl.innerHTML = 'kontinuita | supervize | konference | sebareflexe'
@@ -352,6 +355,15 @@ const finishCurrentState = (choice: string, s: State) => {
         console.log('FinishtCurrentState: Manifesto')
 
         fadeOutElement(manifestoEl).then(() => {
+            hideElement(manifestoFirstParagraphEl)
+            hideElement(manifestoFirst2ParagraphEl)
+            hideElement(manifestoSecondParagraphEl)
+            hideElement(manifestoSecond2ParagraphEl)
+            hideElement(manifestoThirdParagraphEl)
+            hideElement(manifestoThird2ParagraphEl)
+            hideElement(manifestoFourthParagraphEl)
+            hideElement(manifestoFourth2ParagraphEl)
+
             if (s.world.concepts.length < 4) {
                 s.scene = 'choice'
                 startCurrentState(s)

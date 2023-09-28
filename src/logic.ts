@@ -79,8 +79,17 @@ export function generateAction (subject: Subject, actions: Action[], actionModif
     )
     
     // Action
-    sentenceTokens.push(actionModifier.name)
-    sentenceTokens.push(action.verb)
+    if (subject.useActionModifiers) {
+        sentenceTokens.push(actionModifier.name)
+    }
+    
+    // Plural
+    if (subjectVariant.isPlural) {
+        sentenceTokens.push(action.pluralVerb)
+    } else {
+        sentenceTokens.push(action.verb)
+    }
+    
     if (action.suffix) {
         sentenceTokens.push(action.suffix)
     }

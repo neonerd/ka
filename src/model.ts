@@ -17,6 +17,7 @@ export type AttributeType = 'students' | 'art' | 'society' | 'you'
 export interface DisplayVariant {
     text: string
     weight: number
+    isPlural?: boolean
 }
 
 export interface Attribute {
@@ -50,11 +51,14 @@ export interface State {
 export interface Subject {
     name: string
 
+    useActionModifiers: boolean
+
     displayVariants: DisplayVariant[]
 }
 
 export interface Action {
     verb: string
+    pluralVerb: string
     suffix?: string
     modifiers?: string[]
 }
