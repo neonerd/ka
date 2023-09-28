@@ -10,6 +10,7 @@ export interface Concept {
 
 export interface Manifesto {
     concepts: Concept[]
+    sentences: string[]
 }
 
 export type AttributeType = 'students' | 'art' | 'society' | 'you'

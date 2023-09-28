@@ -15,9 +15,12 @@ import { State, World } from './model'
 // ===
 
 import {
-    categories,
     attributes,
-    concepts
+    concepts,
+    subjects,
+    actions,
+    actionModifiers,
+    objects
 } from './data'
 
 // ===
@@ -28,7 +31,7 @@ import { clone } from 'rambda'
 import { createButtonsElement, createDomElementWithIdAndClass, shuffle } from './util'
 import { introTextTemplate, outroTextTemplate, questionTextTemplate, startTextTemplate } from './templates'
 import { fadeInElement, fadeOutElement, hideElement, showElement } from './animations'
-import { composeManifestoHeading, getConceptsForChoice, getManifestoNumber, postManifesto } from './logic'
+import { composeManifestoHeading, generateAction, getConceptsForChoice, getManifestoNumber, postManifesto } from './logic'
 import { INTRO_TIMING, MANIFESTO_TIMING, OUTRO_TIMING } from './constants'
 
 // ===
@@ -212,7 +215,7 @@ const startCurrentState = async (s: State) => {
 
         // Play the sound
         // @ts-ignore
-        soundBank[`MANIFEST_MANIFEST_${s.world.concepts.length+1}`].play()
+        soundBank[`MANIFEST_MANIFEST_${s.world.concepts.length}`].play()
 
         // Compose the manifesto
 
@@ -220,30 +223,50 @@ const startCurrentState = async (s: State) => {
         // manifestoHeadingEl.innerHTML = composeManifestoHeading(s.world.concepts)
         manifestoHeadingEl.innerHTML = ''
 
-        if (s.world.concepts[0]) {
+        if (s.world.concepts.length == 1) {
+            const consequenceSentence = generateAction(subjects[0], actions, actionModifiers, objects)
+
+            s.world.manifesto.sentences.push(s.world.concepts[0].manifestoSentence)
+            s.world.manifesto.sentences.push(consequenceSentence)
+
             manifestoFirstParagraphEl.innerHTML = `${s.world.concepts[0].manifestoSentence}`
-            manifestoFirst2ParagraphEl.innerHTML = `Větička o tom, jak to vplývá na studentstvo.`
+            manifestoFirst2ParagraphEl.innerHTML = consequenceSentence
         }
 
-        if (s.world.concepts[1]) {
+        if (s.world.concepts.length == 2) {
+            const consequenceSentence = generateAction(subjects[1], actions, actionModifiers, objects)
+
+            s.world.manifesto.sentences.push(s.world.concepts[1].manifestoSentence)
+            s.world.manifesto.sentences.push(consequenceSentence)
+
             manifestoSecondParagraphEl.innerHTML = `${s.world.concepts[1].manifestoSentence}`
-            manifestoSecond2ParagraphEl.innerHTML = `Větička o tom, jak to vplývá na umění.`
+            manifestoSecond2ParagraphEl.innerHTML = consequenceSentence
         } else {
             manifestoSecondParagraphEl.innerHTML = ``
             manifestoSecond2ParagraphEl.innerHTML = ``
         }
 
-        if (s.world.concepts[2]) {
+        if (s.world.concepts.length == 3) {
+            const consequenceSentence = generateAction(subjects[2], actions, actionModifiers, objects)
+
+            s.world.manifesto.sentences.push(s.world.concepts[2].manifestoSentence)
+            s.world.manifesto.sentences.push(consequenceSentence)
+
             manifestoThirdParagraphEl.innerHTML = `${s.world.concepts[2].manifestoSentence}`
-            manifestoThird2ParagraphEl.innerHTML = `Větička o tom, jak to vplývá na společnost.`
+            manifestoThird2ParagraphEl.innerHTML = consequenceSentence
         } else {
             manifestoThirdParagraphEl.innerHTML = ``
             manifestoThird2ParagraphEl.innerHTML = ``
         }
 
-        if (s.world.concepts[3]) {
+        if (s.world.concepts.length == 4) {
+            const consequenceSentence = generateAction(subjects[3], actions, actionModifiers, objects)
+
+            s.world.manifesto.sentences.push(s.world.concepts[3].manifestoSentence)
+            s.world.manifesto.sentences.push(consequenceSentence)
+
             manifestoFourthParagraphEl.innerHTML = `${s.world.concepts[3].manifestoSentence}`
-            manifestoFourth2ParagraphEl.innerHTML = `Větička o tom, jak to vplývá na mně.`
+            manifestoFourth2ParagraphEl.innerHTML = consequenceSentence
         } else {
             manifestoFourthParagraphEl.innerHTML = ``
             manifestoFourth2ParagraphEl.innerHTML = ``
@@ -419,7 +442,8 @@ const init = () => {
         },
         concepts: [],
         manifesto: {
-            concepts: []
+            concepts: [],
+            sentences: [],
         }
     }    
 

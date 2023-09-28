@@ -1,3 +1,12 @@
-export const INTRO_TIMING = 10000
-export const MANIFESTO_TIMING = 30000
+// PRODUCTION
+// export const INTRO_TIMING = 10000
+
+// TEST
+export const INTRO_TIMING = 2000
+
+// PRODUCTION
+// export const MANIFESTO_TIMING = 30000
+export const MANIFESTO_TIMING = 23000
+
+// PRODUCTION
 export const OUTRO_TIMING = 30000
