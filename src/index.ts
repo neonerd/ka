@@ -241,9 +241,6 @@ const startCurrentState = async (s: State) => {
 
             manifestoSecondParagraphEl.innerHTML = `${s.world.concepts[1].manifestoSentence}`
             manifestoSecond2ParagraphEl.innerHTML = consequenceSentence
-        } else {
-            manifestoSecondParagraphEl.innerHTML = ``
-            manifestoSecond2ParagraphEl.innerHTML = ``
         }
 
         if (s.world.concepts.length == 3) {
@@ -254,9 +251,6 @@ const startCurrentState = async (s: State) => {
 
             manifestoThirdParagraphEl.innerHTML = `${s.world.concepts[2].manifestoSentence}`
             manifestoThird2ParagraphEl.innerHTML = consequenceSentence
-        } else {
-            manifestoThirdParagraphEl.innerHTML = ``
-            manifestoThird2ParagraphEl.innerHTML = ``
         }
 
         if (s.world.concepts.length == 4) {
@@ -267,9 +261,6 @@ const startCurrentState = async (s: State) => {
 
             manifestoFourthParagraphEl.innerHTML = `${s.world.concepts[3].manifestoSentence}`
             manifestoFourth2ParagraphEl.innerHTML = consequenceSentence
-        } else {
-            manifestoFourthParagraphEl.innerHTML = ``
-            manifestoFourth2ParagraphEl.innerHTML = ``
         }
 
         // Fade in UI
