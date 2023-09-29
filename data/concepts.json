@@ -1,7 +1,7 @@
 [
     {
         "name": "kontinuita",
-        "description": "Kontinuita udržuje plynulý průběh vzdělávacího procesu bez přerušení. Využívám ji pro lepší sledování a podporu našiho studentstva, což zvyšuje efektivitu mého učení a umožňuje mi lépe plánovat výuku a přizpůsobit ji potřebám každého studentstva.",
+        "description": "Kontinuita udržuje plynulý průběh vzdělávacího procesu bez přerušení. Využívám ji pro lepší sledování a podporu našeho studentstva, což zvyšuje efektivitu mého učení a umožňuje mi lépe plánovat výuku a přizpůsobit ji potřebám každého studentstva.",
         "manifestoSentence": "Kontinuita vzdělávání mi pomáhá lépe podporovat a plánovat výuku."
     },
     {
@@ -12,12 +12,12 @@
     {
         "name": "kritéria",
         "description": "Kritéria jsou stanovené normy nebo měřítka, která mi pomáhají hodnotit studentské výkony a dosažení cílů. Využívám je pro objektivní hodnocení a poskytování zpětné vazby. Kritéria zvyšují spravedlnost v hodnocení, usnadňují mi plánování výuky a směřují studentstvo k jasným cílům.",
-        "manifestoSentence": "Kritéria mi umožňují spravedlivě hodnotit výkony a dosažení cílů."
+        "manifestoSentence": "Kritéria mi umožňují spravedlivě hodnotit studentské výkony a dosažení cílů."
     },
     {
         "name": "interpersonální strategie",
         "description": "Interpersonální strategie jsou způsoby, jak komunikuji a buduji vztahy se svým studentstvem. To zahrnuje empatii, porozumění a efektivní komunikaci. Tato strategie vede ke zlepšenému učení a podpoře mého studentstva, což vytváří pozitivní učební prostředí a zvyšuje jejich motivaci k učení.",
-        "manifestoSentence": "Interpersonální strategie mi umožňují budovat pozitivní vztahy a motivovat."
+        "manifestoSentence": "Interpersonální strategie mi umožňují budovat pozitivní vztahy a motivovat studentstvo."
     },
     {
         "name": "časová dotace",
@@ -37,7 +37,7 @@
     {
         "name": "všestranný rozvoj osobnosti",
         "description": "Všestranný rozvoj osobnosti zahrnuje rozvíjení fyzických, intelektuálních, sociálních a emocionálních aspektů studentstva. Podporuje tento komplexní růst, což vede k lepšímu přizpůsobení, kreativitě a sociálním dovednostem. Tím zvyšuji kvalitu vzdělávání a osobního života našeho studentstva.",
-        "manifestoSentence": "Všestranný rozvoj osobnosti mi pomáhá posilovat kreativitu a sociální dovednosti."
+        "manifestoSentence": "Všestranný rozvoj osobnosti mi pomáhá posilovat kreativitu a sociální dovednosti studentstva."
     },
     {
         "name": "spolupráce pedagogického sboru",
@@ -47,7 +47,7 @@
     {
         "name": "sebehodnocení",
         "description": "Sebehodnocení zahrnuje schopnost studentstva zhodnotit vlastní dovednosti, pokrok a výkon. Tím podněcuje sebeuvědomění, samostatnost a zodpovědnost za vlastní učení. Studentstvo potřebuje prostor k naučení se sebehodnocovat. Mě to usnadňuje individuální podporu a personalizovanou výuku.",
-        "manifestoSentence": "Sebehodnocení mi pomáhá posilovat samostatnost a odpovědnost za vlastní učení."
+        "manifestoSentence": "Sebehodnocení mi pomáhá posilovat samostatnost a odpovědnost studentstva za vlastní učení."
     },
     {
         "name": "objektivita a spravedlnost",
@@ -55,7 +55,7 @@
         "manifestoSentence": "Kvůli objektivitě hodnocení jsem spravedlivější a důvěryhodnější."
     },
     {
-        "name": "aktuální prychický stav hodnotitelstva",
+        "name": "aktuální psychický stav hodnotitelstva",
         "description": "Můj aktuální psychický stav při hodnocení odkazuje na můj momentální emocionální a mentální stav. Musím být ve stabilním a vyváženém stavu, abych mohl poskytnout spravedlivé a nestranné hodnocení. Výhodou pro mě je, že to zvyšuje objektivitu hodnocení a eliminuje vliv emocí a náhodných faktorů.",
         "manifestoSentence": "Zlepšování mého psychického stavu mi pomáhá být objektivnější v hodnocení."
     },
@@ -67,12 +67,12 @@
     {
         "name": "cíl vzdělání",
         "description": "Cíl vzdělání je zaměřen na to, co studentstvo má znát a dovedět se po absolvování vzdělávacího programu. Mě slouží k jasně definovaným směrnicím pro výuku a hodnocení, což mi usnadňuje plánování a poskytuje studentstvu jasný směr pro jejich učební cestu.",
-        "manifestoSentence": "Cíl vzdělání mi poskytuje směr a jasnou orientaci pro výuku."
+        "manifestoSentence": "Stanovení cíle vzdělání mi poskytuje směr a jasnou orientaci pro výuku."
     },
     {
         "name": "nácvik",
         "description": "Nácvik zahrnuje opakování a procvičování dovedností nebo znalostí. Já ho využívám k utvrzení učebního obsahu a k zlepšení dovedností studentstva i své vlastní práce. Výhodou je lepší zapamatování a pochopení, což zvyšuje úspěch ve vzdělávání.",
-        "manifestoSentence": "Nácvik zvyšuje úspěch ve vzdělávání a zlepšuje dovednosti."
+        "manifestoSentence": "Nácvik zvyšuje úspěch ve vzdělávání a zlepšuje dovednosti studentstva."
     },
     {
         "name": "pansofie",
@@ -82,42 +82,42 @@
     {
         "name": "personalizace",
         "description": "Personalizace znamená přizpůsobení výuky potřebám a preferencím každého studentstva. Můžu lépe podporovat individuální učební styly a tempo, což vede k většímu zapojení, motivaci a úspěšnosti studentstva.",
-        "manifestoSentence": "Personalizace mi pomáhá zvyšuje úspěšnost a motivaci ve výuce."
+        "manifestoSentence": "Personalizace mi pomáhá zvyšovat úspěšnost a motivaci ve výuce."
     },
     {
         "name": "profesní etika",
         "description": "Profesní etika zahrnuje morální a etické normy, které dodržuji při výuce. Zajišťuje spravedlnost, důvěru a bezpečí ve vzdělávání. Pomáhá mi vytvářet pozitivní vztahy se studentstvem a pedagogickým sborem a udržovat kvalitu výuky.",
-        "manifestoSentence": "Kvůli profesní etice jsem spravedlivější, důvěryhodnější a má výuka je kvalitnější."
+        "manifestoSentence": "Díky profesní etice jsem spravedlivější, důvěryhodnější a má výuka je kvalitnější."
     },
     {
         "name": "studentská konference",
         "description": "Studentská konference je událost, kde studentstvo prezentuje své projekty a myšlenky před publikem. Podporuje to rozvoj komunikačních dovedností a sebevědomí u studentstva, a zároveň mi umožňuje vyhodnotit jejich pokrok a schopnosti.",
-        "manifestoSentence": "Studentská konference mi pomáhá podpořit rozvoj komunikačních dovedností."
+        "manifestoSentence": "Studentská konference mi pomáhá podpořit rozvoj komunikačních dovedností studentstva."
     },
     {
         "name": "Kellerův plán",
         "description": "Kellerův plán je model založený na motivaci studentstva. Zahrnuje stanovení cílů, zpětnou vazbu a podporu pro studentstvo. Zvyšuje zapojení a zlepšuje výsledky výuky tím, že motivuje studentstvo k aktivnějšímu učení a poskytuje jim nástroje pro sledování svého pokroku.",
-        "manifestoSentence": "Kellerův plán mi pomáhá motivovat k aktivnímu učení a zlepšuje výsledky."
+        "manifestoSentence": "Kellerův plán mi pomáhá motivovat studentstvo k aktivnímu učení a zlepšuje jejich výsledky."
     },
     {
-        "name": "metody situační",
-        "description": "Metody situace klíčově vycházejí z reálných situací a praktických zkušeností - začleňuji reálné situace do mé výuky. Díky nim zvyšuji praktické dovednosti studentstva, což zlepšuje jejich připravenost pro budoucí kariéru. Tyto metody také posilují jejich zapamatování a chápání učiva.",
-        "manifestoSentence": "Metody situace mi pomáhají zvýšit praktické dovednosti a připravují na kariéru."
+        "name": "situační metody",
+        "description": "Situační metody vycházejí z reálných situací a praktických zkušeností - začleňuji reálné situace do mé výuky. Díky nim zvyšuji praktické dovednosti studentstva, což zlepšuje jejich připravenost pro budoucí kariéru. Tyto metody také posilují jejich zapamatování a chápání učiva.",
+        "manifestoSentence": "Situační metody mi pomáhají zvýšit praktické dovednosti studentstva a připravují je na kariéru."
     },
     {
         "name": "dynamická diferenciace",
         "description": "Dynamická diferenciace přizpůsobuje výuku podle potřeb a dovedností jednotlivýého studentstva. Můžu lépe podporovat různorodé učební styly a tempo, což zvyšuje angažovanost, motivaci a úspěšnost studentstva, a umožňuje více individuální přístup ke vzdělávání.",
-        "manifestoSentence": "Dynamická diferenciace mi pomáhá zvyšovat angažovanost, motivaci a úspěšnost."
+        "manifestoSentence": "Dynamická diferenciace mi pomáhá zvyšovat angažovanost, motivaci a úspěšnost studentstva."
     },
     {
         "name": "prekoncept",
         "description": "Prekoncepty jsou představy, přesvědčení nebo znalosti, které mám před zahájením výuky na dané téma. Můžu je identifikovat a využít jako výchozí bod pro svou výuku, což mi pomáhá lépe přizpůsobit výuku potřebám studentstva a zlepšit jejich porozumění a zapojení do nového materiálu.",
-        "manifestoSentence": "Prekoncepty mi umožňují lépe přizpůsobit výuku potřebám studentů."
+        "manifestoSentence": "Prekoncepty mi umožňují lépe přizpůsobit výuku potřebám studentstva."
     },
     {
         "name": "evokace",
         "description": "Evokace v pedagogice označuje proces vyvolávání myšlenek, reakcí nebo vzpomínek u studentstva. Tuto metodu využívám k aktivizaci předchozích znalostí a k získání pozornosti studentstva. To podporuje efektivní výuku a zapamatování nového materiálu.",
-        "manifestoSentence": "Evokace mi pomáhá aktivizovat a podporuje zapamatování nového učiva."
+        "manifestoSentence": "Evokace mi pomáhá aktivizovat studentstvo a podporuje zapamatování nového učiva."
     },
     {
         "name": "intervize",
@@ -137,12 +137,12 @@
     {
         "name": "komplexní zpětná vazba",
         "description": "Komplexní zpětná vazba zahrnuje podrobnou a multidimenzionální zpětnou informaci o studentském výkonu, zahrnující různé aspekty a detaily. Umožňuje mi lépe porozumět studentským potřebám a rozvoji, což vede ke zlepšení výuky a individuálního přístupu k vzdělávání.",
-        "manifestoSentence": "Komplexní zpětná vazba zlepšuje můj individuální přístup k výuce."
+        "manifestoSentence": "Komplexní zpětná vazba zlepšuje individuální přístup k výuce."
     },
     {
         "name": "koncept hodnot",
         "description": "Koncept hodnot zahrnuje naše přesvědčení a priority. Znamená to pro mě, že naše hodnoty ovlivňují výuku a vztahy se studentstvem. Jsou základem etického vedení třídy a pomáhají mi vytvářet inkluzivní a podpůrné prostředí, které respektuje rozmanitost a rozvoj charakteru u studentstva.",
-        "manifestoSentence": "Koncept hodnot jsou pro mě základen etického vedení třídy a inkluzivního prostředí."
+        "manifestoSentence": "Koncept hodnot je pro mě základem etického vedení třídy a inkluzivního prostředí."
     },
     {
         "name": "potřeby",
@@ -157,12 +157,12 @@
     {
         "name": "regionální diference",
         "description": "Regionální diference znamenají, že beru ohled na specifické potřeby, kulturu a kontext různých oblastí nejen téma, ale i studentstva které učím. To mi pomáhá přizpůsobit výuku pro lepší porozumění a zapojení studentstva, což je klíčové pro úspěšný vzdělávací proces.",
-        "manifestoSentence": "Regionální diference mi pomáhají lépe porozumět a zapojit studentstvo."
+        "manifestoSentence": "Znalost regionálních diferencí mi pomáhá lépe porozumět studentstvu a zapojit ho do výuky."
     },
     {
         "name": "didaktika",
         "description": "Didaktika je pro mě uměním a vědou vyučování. Zahrnuje metody, strategie a techniky, které používám k efektivnímu předávání znalostí a dovedností studentstvu. Stále se učím, jak se stát lepším didaktikem, abych podpořilx jejich učební procesy.",
-        "manifestoSentence": "Didaktika je pro mě uměním vyučování a zlepšování výuky."
+        "manifestoSentence": "Didaktika mi pomáhá efektivně předávat znalosti a dovednosti studentstvu."
     },
     {
         "name": "metoda",
@@ -170,9 +170,9 @@
         "manifestoSentence": "Metoda je pro mě klíčovým prvkem vytváření inspirativního vzdělávacího prostředí."
     },
     {
-        "name": "vzdělávací standarty",
-        "description": "Vzdělávací standarty jsou klíčovými směrnými body pro výuku. Definují, co by studentstvo mělo znát a umět na určité úrovni. Pomáhají mi plánovat osnovy, hodnocení a zajistit kvalitu vzdělání. Jsou základem pro jasný a konzistentní výukový proces.",
-        "manifestoSentence": "Vzdělávací standarty mi pomáhají plánovat osnovy, hodnocení a zajistit kvalitu výuku."
+        "name": "vzdělávací standardy",
+        "description": "Vzdělávací standardy jsou klíčovými směrnými body pro výuku. Definují, co by studentstvo mělo znát a umět na určité úrovni. Pomáhají mi plánovat osnovy, hodnocení a zajistit kvalitu vzdělání. Jsou základem pro jasný a konzistentní výukový proces.",
+        "manifestoSentence": "Vzdělávací standardy mi pomáhají plánovat osnovy, hodnocení a zajistit kvalitu výuku."
     },
     {
         "name": "syntéza",
@@ -182,7 +182,7 @@
     {
         "name": "konzultace",
         "description": "Konzultace jsou setkání se studentstvem mimo běžnou výuku, kde můžeme diskutovat, poskytovat podporu a řešit otázky. Konzultace posilují vzájemnou komunikaci a pomáhají studentstvu lépe porozumět učivu. Jsou prostředkem pro individuální a personalizovanou pomoc.",
-        "manifestoSentence": "Konzultace jsou pro mě prostředkem zlepšit individuální a personalizovanou pomoc studentstvu."
+        "manifestoSentence": "Konzultace jsou pro mě prostředkem jaj zlepšit individuální a personalizovanou pomoc studentstvu."
     },
     {
         "name": "klarifikace",
@@ -192,17 +192,17 @@
     {
         "name": "konceptualizace",
         "description": "Konceptualizace je schopnost pomoci studentstvu vytvářet abstraktní myšlenky a koncepty. Snažím se ukázat spojitosti a vzory v učivu, což rozvíjí jejich kritické a analytické myšlení. Pomáhám jim budovat silný teoretický základ, což je klíčem k hlubšímu porozumění a úspěchu ve vzdělání.",
-        "manifestoSentence": "Pomocí konceptualizace ukazují spojitost a vzory v učivu."
+        "manifestoSentence": "Pomocí konceptualizace ukazuji spojitost a vzory v učivu."
     },
     {
         "name": "učební tempo",
         "description": "Učební tempo je rychlost, jakou studentstvu zvládají nové učivo. Je pro mě důležité pozorovat a přizpůsobit výuku tak, aby vyhovovala různým tempům studentstva. Podporuji individualizaci a flexibilitu ve výuce, abych zajistilx, že každé studentstvo může učit se vlastním tempem a srozumitelně.",
-        "manifestoSentence": "Sleduji učební tempo a přizpůsobuji výuku."
+        "manifestoSentence": "Sleduji učební tempo studentstva a přizpůsobuji mu výuku."
     },
     {
         "name": "zásada soustavnosti",
         "description": "Zásada soustavnosti znamená pro mě trvalý a systematický přístup k výuce. Je to klíčové pro efektivní učení studentstva, protože jim umožňuje postupovat krok za krokem, stavebně a s rozvojem dovedností. Sleduji dlouhodobý plán a pečlivě stavím na již získaných znalostech, což vede k lepšímu porozumění a úspěchu ve vzdělávání.",
-        "manifestoSentence": "Zásada soustavnosti mi umožňuje postupovat systematicky."
+        "manifestoSentence": "Zásada soustavnosti mi umožňuje postupovat ve výuce systematicky."
     },
     {
         "name": "funkce hodnocení",
@@ -210,14 +210,14 @@
         "manifestoSentence": "Funkce hodnocení mi pomáhá přizpůsobovat výuku a být efektivní."
     },
     {
-        "name": "úlohy dychotomické",
-        "description": "Dychotomické úlohy jsou takové, které mají dvě jasně definované odpovědi: správnou a nesprávnou. Pro mě znamenají jednoduchý způsob hodnocení znalostí a dovedností studentstva. Tyto úlohy mohou být užitečné pro základní testování, ale musím také dbát na rozmanitost hodnocení, aby studentstvo mohlo projevit své skutečné schopnosti.",
-        "manifestoSentence": "Dychotomické úlohy je pro mě jednoduchým způsobem hodnocení znalostí."
+        "name": "dichotomické úlohy",
+        "description": "Dichotomické úlohy jsou takové, které mají dvě jasně definované odpovědi: správnou a nesprávnou. Pro mě znamenají jednoduchý způsob hodnocení znalostí a dovedností studentstva. Tyto úlohy mohou být užitečné pro základní testování, ale musím také dbát na rozmanitost hodnocení, aby studentstvo mohlo projevit své skutečné schopnosti.",
+        "manifestoSentence": "Dichotomické úlohy mi pomáhají jednoduchým způsobem hodnotit znalosti studentstva."
     },
     {
         "name": "didaktické zásady",
         "description": "Didaktické zásady jsou pro mě osnovou výuky. Principy a metody, které usnadňují efektivní přenos znalostí a dovedností. S jejich pomocí mohu plánovat strukturovanou, interaktivní a motivující výuku, což podporuje úspěšný vzdělávací proces studentstva.",
-        "manifestoSentence": "Didaktické zásady jsou pro mě klíčovým nástrojem pro plánování efektivní výuky."
+        "manifestoSentence": "Didaktické zásady mi pomáhají efektivněji plánovat výuku."
     },
     {
         "name": "empatie",
@@ -242,12 +242,12 @@
     {
         "name": "partnerská výuka",
         "description": "Partnerská výuka je přístup, kde spolupracuji se studentstvem rovnocenně a partnersky. Sdílíme odpovědnost za učení a společně tvoříme výukový proces. Toto přístupu zvyšuje zájem, motivaci a aktivní zapojení studentstva, což vede k hlubšímu porozumění a úspěšnějšímu vzdělání.",
-        "manifestoSentence": "Partnerská výuka mi pomáhá zvyšovat zájem, motivaci a aktivní zapojení."
+        "manifestoSentence": "Partnerská výuka mi pomáhá zvyšovat zájem, motivaci a aktivní zapojení studentstva."
     },
     {
         "name": "metoda paradoxů",
         "description": "Metoda paradoxů je způsobem učení, kde využívám protiklady a rozpory k podnícení kritického myšlení a hlubšího porozumění. Nabízí studentstvu příležitost zkoumat různé perspektivy a rozvíjet analytické schopnosti. Tím podporuji jejich kreativitu a schopnost řešit komplexní problémy.",
-        "manifestoSentence": "Metoda paradoxů mi pomáhá podněcovat kritické myšlení a rozvíjet analytické schopnosti."
+        "manifestoSentence": "Metoda paradoxů mi pomáhá podněcovat kritické myšlení a rozvíjet analytické schopnosti studentstva."
     },
     {
         "name": "případová studie",
@@ -255,24 +255,24 @@
         "manifestoSentence": "Případové studie mi pomáhají naučit aplikovat teorii na reálné situace."
     },
     {
-        "name": "mirkovyučování",
+        "name": "mikrovyučování",
         "description": "Mirkovyučování je drobné, detailní vedení studentstva v průběhu výuky. Zahrnuje jemné korekce, podporu a směrování jejich učení. Tím se zajistí, aby studentstvo pochopilo konkrétní aspekty učiva a mohlo se zdokonalovat. Mirkovyučování je klíčem k efektivnímu vzdělávání a individuálnímu rozvoji studentstva.",
         "manifestoSentence": "Mikrovyučování mi pomáhá k efektivitě vzdělávání."
     },
     {
         "name": "klinická praxe",
         "description": "Klinická praxe je praktické cvičení nebo stáž ve skutečném profesním prostředí. Znamená to, že studentstvo má možnost uplatňovat teorii v reálných situacích, získávat zkušenosti a rozvíjet praktické dovednosti. Pro mě je to důležitá fáze vzdělávání, kde podporuji studentstvo v jejich profesním růstu a přípravě na budoucí práci.",
-        "manifestoSentence": "Klinická praxe je pro mě důležitá fáze vzdělávání k přípravě a podpoře profesního růstu."
+        "manifestoSentence": "Klinická praxe podporuje profesní růst studentsva."
     },
     {
         "name": "princip sociální interakce",
         "description": "Princip sociální interakce znamená, že podporuji komunikaci, spolupráci a diskuzi mezi studentstvem. To vytváří aktivní a angažované učební prostředí, kde si studentstvo navzájem pomáhá a učí se od sebe. Tím podporuji jejich rozvoj dovedností, komunikace a schopnosti spolupracovat - klíčové pro jejich osobní a profesní růst.",
-        "manifestoSentence": "Princip sociální interakce mi pomáhá vytvářit aktivní učební prostředí a podporuje rozvoj dovedností."
+        "manifestoSentence": "Princip sociální interakce mi pomáhá vytvářet aktivní učební prostředí a podporuje rozvoj dovedností studentstva."
     },
     {
-        "name": "informální zvdělávání",
+        "name": "informální vzdělávání",
         "description": "Informální vzdělávání jsou neformální způsoby učení mimo tradiční školní prostředí. Pro mě to znamená respektovat různé způsoby, jak se studentstvo učí mimo školu (např. samostudium, online kurzy). Mělo by být podporováno a spojeno s formálním vzděláváním, aby se studentstvo lépe připravilo na moderní a komplexní vzdělávací potřeby.",
-        "manifestoSentence": "Informální vzdělávání mi pomáhá rozšířit tradiční vzdělávání."
+        "manifestoSentence": "Informální přístup mi pomáhá rozšiřovat tradiční vzdělávání."
     },
     {
         "name": "hospitace",
@@ -282,11 +282,11 @@
     {
         "name": "autoregulační studijní zdroj",
         "description": "Autoregulační studijní zdroj znamená, že studentstvo má schopnost samostatně řídit a organizovat své učení. Pro mě to znamená podporovat studentstvo v rozvoji těchto dovedností. Pomáhám jim naučit se plánovat, monitorovat a hodnotit svůj vlastní učební proces, což vede k efektivnějšímu a nezávislému učení.",
-        "manifestoSentence": "Autoregulační studijní zdroj mi umožňuje podporovat rozvoj samostatných učebních dovedností."
+        "manifestoSentence": "Autoregulační studijní zdroje mi umožňují podporovat rozvoj samostatných učebních dovedností studentstva."
     },
     {
         "name": "orientační prověřování",
         "description": "Orientační prověřování je průběžný způsob sledování pokroku studentstva během výuky. Používám různé formy, jako krátké testy nebo úkoly, abych získal zpětnou vazbu o tom, jak studentstvo chápe učivo. To mi umožňuje přizpůsobit výuku a poskytovat jim potřebnou podporu pro dosažení vzdělávacích cílů.",
-        "manifestoSentence": "Orientační prověřování mi umožňuje pružně reagovat na potřeby a přizpůsobit výuku."
+        "manifestoSentence": "Orientační prověřování mi umožňuje pružně reagovat na potřeby studentstva a přizpůsobit mu výuku."
     }
 ]
