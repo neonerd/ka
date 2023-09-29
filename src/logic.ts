@@ -3,9 +3,15 @@ import {clone} from 'rambda'
 import { Action, ActionModifier, Concept, DisplayVariant, Objekt, State, Subject } from "./model"
 import { shuffle, pick } from "./util"
 import { capitalize } from "./strings"
-import { replacementTokens } from './data'
+import { concepts, replacementTokens } from './data'
 
 export function getConceptsForChoice (state: State) {
+    // If we run out of concepts, we reset them
+    if (state.conceptsDatabase.length < 2) {
+        state.conceptsDatabase = shuffle(clone(concepts))
+    }
+
+    // Select the concepts
     const concept1 = state.conceptsDatabase.pop()
     const concept2 = state.conceptsDatabase.pop()
 
