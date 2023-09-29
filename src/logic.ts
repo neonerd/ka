@@ -101,6 +101,45 @@ export function generateAction (subject: Subject, actions: Action[], actionModif
 }
 
 // ===
+// === Generate manifesto text
+// ===
+export function generateManifestoTextForPrinting (number: number, concepts: Concept[], sentences: string[]) {
+return `
+
+
+~~~
+
+
+manifest #${number}
+
+
+${concepts[0].name}
+${concepts[1].name}
+${concepts[2].name}
+${concepts[3].name}
+
+
+${sentences[0]}
+${sentences[1]}
+
+${sentences[2]}
+${sentences[3]}
+
+${sentences[4]}
+${sentences[5]}
+
+${sentences[6]}
+${sentences[7]}
+
+
+~~~
+
+
+
+`
+}
+
+// ===
 // === Get manifesto number from the server
 // ===
 export function getManifestoNumber () {

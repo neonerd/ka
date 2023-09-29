@@ -31,7 +31,7 @@ import { clone } from 'rambda'
 import { createButtonsElement, createDomElementWithIdAndClass, shuffle } from './util'
 import { introTextTemplate, outroTextTemplate, questionTextTemplate, startTextTemplate } from './templates'
 import { fadeInElement, fadeOutElement, hideElement, showElement } from './animations'
-import { composeManifestoHeading, generateAction, getConceptsForChoice, getManifestoNumber, postManifesto } from './logic'
+import { composeManifestoHeading, generateAction, generateManifestoTextForPrinting, getConceptsForChoice, getManifestoNumber, postManifesto } from './logic'
 import { INTRO_TIMING, MANIFESTO_TIMING, OUTRO_TIMING } from './constants'
 
 // ===
@@ -349,6 +349,14 @@ const startCurrentState = async (s: State) => {
             return fadeInElement(outroTextEl)
         }).then(() => {
             // Print
+            // We don't fail if printing doesn't work
+            const text = generateManifestoTextForPrinting(manifestoNumber, s.world.concepts, s.world.manifesto.sentences)
+            try {
+                postManifesto(text)
+            } catch (e) {
+                console.warn('MANIFESTO PRINTING FAILED')
+                console.log(e)
+            }
 
             // Finish after timing
             setTimeout(() => {
