@@ -196,6 +196,17 @@ const resetGlobalElementsState = () => {
     showElement(startButtonsGroup.circleButtonEl, 'block')
     showElement(questionsButtonsGroup.rectangleButtonEl, 'block')
     showElement(questionsButtonsGroup.circleButtonEl, 'block')
+
+    hideElement(introText1El)
+    hideElement(introText2El)
+    hideElement(introText3El)
+
+    hideElement(outroEl)
+    hideElement(outroManifestConceptEl1)
+    hideElement(outroManifestConceptEl2)
+    hideElement(outroManifestConceptEl3)
+    hideElement(outroManifestConceptEl4)
+    hideElement(outroTextEl)
 }
 
 const startCurrentState = async (s: State) => {
@@ -290,21 +301,40 @@ const startCurrentState = async (s: State) => {
             manifestoFourth2ParagraphEl.innerHTML = consequenceSentence
         }
 
-        // Fade in UI
-        showElement(manifestoEl)
-
-        await fadeInElement(manifestoFirstParagraphEl)
-        await fadeInElement(manifestoFirst2ParagraphEl)
-
-        if (s.world.concepts[1]) {
+        // Animations
+        if (s.world.concepts.length == 1) {
+            // Fade in UI
+            showElement(manifestoEl)
+            await fadeInElement(manifestoFirstParagraphEl)
+            await fadeInElement(manifestoFirst2ParagraphEl)
+        }
+        if (s.world.concepts.length == 2) {
+            showElement(manifestoFirstParagraphEl)
+            showElement(manifestoFirst2ParagraphEl)
+            // Fade in UI
+            await fadeInElement(manifestoEl)
             await fadeInElement(manifestoSecondParagraphEl)
             await fadeInElement(manifestoSecond2ParagraphEl)
         }
-        if (s.world.concepts[2]) {
+        if (s.world.concepts.length == 3) {
+            showElement(manifestoFirstParagraphEl)
+            showElement(manifestoFirst2ParagraphEl)
+            showElement(manifestoSecondParagraphEl)
+            showElement(manifestoSecond2ParagraphEl)
+            // Fade in UI
+            await fadeInElement(manifestoEl)
             await fadeInElement(manifestoThirdParagraphEl)
             await fadeInElement(manifestoThird2ParagraphEl)
         }
-        if (s.world.concepts[3]) {
+        if (s.world.concepts.length == 4) {
+            showElement(manifestoFirstParagraphEl)
+            showElement(manifestoFirst2ParagraphEl)
+            showElement(manifestoSecondParagraphEl)
+            showElement(manifestoSecond2ParagraphEl)
+            showElement(manifestoThirdParagraphEl)
+            showElement(manifestoThird2ParagraphEl)
+            // Fade in UI
+            await fadeInElement(manifestoEl)
             await fadeInElement(manifestoFourthParagraphEl)
             await fadeInElement(manifestoFourth2ParagraphEl)
         }
@@ -332,7 +362,11 @@ const startCurrentState = async (s: State) => {
         }
 
         // Get manifesto number
-        const manifestoNumber = await getManifestoNumber()
+        // PRODUCTION
+        // const manifestoNumber = await getManifestoNumber()
+        // TEST
+        const manifestoNumber = 1
+        
         outroTextEl.innerHTML = `<p>Vaše manifesto #${manifestoNumber} se tiskne.</p>`
 
         // Show the element

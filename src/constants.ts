@@ -11,6 +11,5 @@ export const MANIFESTO_TIMING = 23000
 // PRODUCTION
 export const OUTRO_TIMING = 30000
 
-
 export const DEFAULT_FADE_IN = 4000
 export const DEFAULT_FADE_OUT = 4000

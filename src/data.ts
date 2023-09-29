@@ -271,7 +271,7 @@ const objects: Objekt[] = [
     {name: 'barvy', applicableActions: ['zobrazuje', 'reflektuje', 'dekonstruuje', 'ovlivňuje', 'hledá', 'znázorňuje'], displayVariants: ['barvy'], applicableSubjects: ['umění']},
     {name: 'tvary', applicableActions: ['zobrazuje', 'reflektuje', 'dekonstruuje', 'ovlivňuje', 'hledá', 'znázorňuje'], displayVariants: ['tvary'], applicableSubjects: ['umění']},
     {name: 'příběhy', applicableActions: ['zobrazuje', 'reflektuje', 'dekonstruuje', 'ovlivňuje', 'hledá', 'znázorňuje'], displayVariants: ['příběhy'], applicableSubjects: ['umění']},
-    {name: 'slova', applicableActions: ['zobrazuje', 'reflektuje', 'dekonstruuje', 'ovlivňuje', 'hledá', 'znázorňuje'], displayVariants: ['slova'], applicableSubjects: ['umění']},
+    {name: 'slova', applicableActions: ['zobrazuje', 'reflektuje', 'dekonstruuje', 'hledá', 'znázorňuje'], displayVariants: ['slova'], applicableSubjects: ['umění']},
     {name: 'pocity', applicableActions: ['zobrazuje', 'reflektuje', 'dekonstruuje', 'ovlivňuje', 'hledá', 'znázorňuje'], displayVariants: ['pocity'], applicableSubjects: ['umění']},
 
     // ===
