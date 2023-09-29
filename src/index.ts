@@ -560,7 +560,7 @@ const init = () => {
     }    
 
     const state: State = {
-        scene: 'choice',
+        scene: 'start',
         currentConcepts: [],
     
         conceptsDatabase: shuffle(clone(concepts)),
