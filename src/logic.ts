@@ -104,10 +104,7 @@ export function generateAction (subject: Subject, actions: Action[], actionModif
 // === Generate manifesto text
 // ===
 export function generateManifestoTextForPrinting (number: number, concepts: Concept[], sentences: string[]) {
-return `
-
-
-~~~
+return `~~~
 
 
 manifest #${number}
@@ -136,7 +133,10 @@ ${sentences[7]}
 
 
 
-`
+
+
+
+_______________`
 }
 
 // ===
