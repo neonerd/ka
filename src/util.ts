@@ -14,11 +14,17 @@ export function createDomElementWithIdAndClass(id: string, className: string, ap
 
 export function createButtonsElement (id: string) {
     const buttonsEl = createDomElementWithIdAndClass(id + '-buttons', 'buttons')
-    const circleButtonEl = createDomElementWithIdAndClass(id + '-circle-button', 'circle-button', buttonsEl);
-    const rectangleButtonEl = createDomElementWithIdAndClass(id + '-rectangle-button', 'rectangle-button', buttonsEl);
+
+    const circleButtonWrapperEl = createDomElementWithIdAndClass(id + '-circle-button-wrapper', 'circle-button-wrapper', buttonsEl)
+    const circleButtonEl = createDomElementWithIdAndClass(id + '-circle-button', 'circle-button', circleButtonWrapperEl);
+
+    const rectangleButtonWrapperEl = createDomElementWithIdAndClass(id + '-rectangle-button-wrapper', 'rectangle-button-wrapper', buttonsEl)
+    const rectangleButtonEl = createDomElementWithIdAndClass(id + '-rectangle-button', 'rectangle-button', rectangleButtonWrapperEl);
 
     return {
         buttonsEl,
+        circleButtonWrapperEl,
+        rectangleButtonWrapperEl,
         circleButtonEl,
         rectangleButtonEl
     }

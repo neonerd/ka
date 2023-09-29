@@ -134,6 +134,10 @@ body {
     width: 100%;
 }
 
+.question-text-wrapper {
+    width: 600px;
+}
+
 .question-text {
     color: var(--Text-Color, #7A28CB);
     text-align: left;
@@ -294,12 +298,31 @@ body {
     100% { transform: translate(10.00px, 0.00px); }
 }
 
+@keyframes moveAroundOpposite {
+    100% { transform: translate(10.00px, 0.00px); }
+    90%  { transform: translate(8.09px, 5.88px); }
+    80%  { transform: translate(3.09px, 9.51px); }
+    70%  { transform: translate(-3.09px, 9.51px); }
+    60%  { transform: translate(-8.09px, 5.88px); }
+    50%  { transform: translate(-10.00px, 0.00px); }
+    40%  { transform: translate(-8.09px, -5.88px); }
+    30%  { transform: translate(-3.09px, -9.51px); }
+    20%  { transform: translate(3.09px, -9.51px); }
+    10%  { transform: translate(8.09px, -5.88px); }
+    0%   { transform: translate(10.00px, 0.00px); }
+}
+
 @keyframes shake {
     0% { transform: translateX(0); }
     25% { transform: translateX(-10px); }
     50% { transform: translateX(10px); }
     75% { transform: translateX(-10px); }
     100% { transform: translateX(10px); }
+}
+
+@keyframes zoomIn {
+    0% { transform: scale(1); }
+    100% { transform: scale(2); }
 }
 
 //
@@ -312,6 +335,20 @@ body {
 
     padding-top: 160px;
     width: 100%;
+}
+
+.circle-button-wrapper {
+    position: relative;
+    display: block;
+    width: 150px;
+    height: 150px;
+}
+
+.rectangle-button-wrapper {
+    position: relative;
+    display: block;
+    width: 150px;
+    height: 150px;
 }
 
 .circle-button {
@@ -332,5 +369,5 @@ body {
     height: 150px;
     background-color: #FFCACA;
 
-    animation: moveAround 5s linear infinite;
+    animation: moveAroundOpposite 5s linear infinite;
 }

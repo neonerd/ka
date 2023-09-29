@@ -66,9 +66,15 @@ introTextEl.innerHTML = introTextTemplate
 
 // === Questions
 const questionsEl = createDomElementWithIdAndClass('questions', 'questions', wrapperEl)
+
 const questionsHolderEl = createDomElementWithIdAndClass('questions-holder', 'questions-holder', questionsEl)
-const question1El = createDomElementWithIdAndClass('question-1', 'question-text', questionsHolderEl)
-const question2El = createDomElementWithIdAndClass('question-2', 'question-text', questionsHolderEl)
+
+const question1WrapperEl = createDomElementWithIdAndClass('question-1', 'question-text-wrapper', questionsHolderEl)
+const question2WrapperEl = createDomElementWithIdAndClass('question-2', 'question-text-wrapper', questionsHolderEl)
+
+const question1El = createDomElementWithIdAndClass('question-1', 'question-text', question1WrapperEl)
+const question2El = createDomElementWithIdAndClass('question-2', 'question-text', question2WrapperEl)
+
 const questionsButtonsGroup = createButtonsElement('questions')
 questionsEl.appendChild(questionsButtonsGroup.buttonsEl)
 
@@ -174,7 +180,21 @@ const soundBank = {
 // === FUNCTIONS
 // ===
 
+/*
+    This function resets CSS of our elements to fix their positions and stuff after animations and before starting any state transition.
+*/
+const resetGlobalElementsState = () => {
+    showElement(question1El, 'block')
+    showElement(question2El, 'block')
+    showElement(startButtonsGroup.rectangleButtonEl, 'block')
+    showElement(startButtonsGroup.circleButtonEl, 'block')
+    showElement(questionsButtonsGroup.rectangleButtonEl, 'block')
+    showElement(questionsButtonsGroup.circleButtonEl, 'block')
+}
+
 const startCurrentState = async (s: State) => {
+    resetGlobalElementsState()
+
     //START
     if (s.scene == 'start') {
         console.log('StartCurrentState: Start')
@@ -331,10 +351,16 @@ const startCurrentState = async (s: State) => {
     }
 }
 
-const finishCurrentState = (choice: string, s: State) => {
-    console.log('FinishtCurrentState')
+const finishCurrentState = async (choice: string, s: State) => {
+    console.log('FinishCurrentState')
 
     if (s.scene == 'start') {
+        if (choice == 'A') {
+            await fadeOutElement(startButtonsGroup.rectangleButtonEl)
+        } else {
+            await fadeOutElement(startButtonsGroup.circleButtonEl)
+        }
+
         fadeOutElement(startEl).then(() => {
             s.scene = 'intro'
             startCurrentState(s)
@@ -343,7 +369,7 @@ const finishCurrentState = (choice: string, s: State) => {
 
     // INTRO
     if (s.scene == 'intro') {
-        console.log('FinishtCurrentState: Intro')
+        console.log('FinishCurrentState: Intro')
         fadeOutElement(introEl).then(() => {
             s.scene = 'choice'
             startCurrentState(s)
@@ -351,12 +377,16 @@ const finishCurrentState = (choice: string, s: State) => {
     }
     // CHOICE
     if (s.scene == 'choice') {
-        console.log('FinishtCurrentState: Choice')
+        console.log('FinishCurrentState: Choice')
 
         if (choice == 'A') {
             s.world.concepts.push(s.currentConcepts[0])
+            fadeOutElement(question2El)
+            await fadeOutElement(questionsButtonsGroup.rectangleButtonEl)
         } else {
             s.world.concepts.push(s.currentConcepts[1])
+            fadeOutElement(question1El)
+            await fadeOutElement(questionsButtonsGroup.circleButtonEl)
         }
 
         fadeOutElement(questionsEl).then(() => {
@@ -390,9 +420,12 @@ const finishCurrentState = (choice: string, s: State) => {
 
     // OUTRO
     if (s.scene == 'outro') {
-        console.log('FinishtCurrentState: Outro')
+        console.log('FinishCurrentState: Outro')
 
         fadeOutElement(outroEl)
+
+        resetState(s)
+        startCurrentState(s)
     }
 }
 
@@ -414,10 +447,27 @@ const handleInput = (e: KeyboardEvent, s: State) => {
 }
 
 // ===
-// === EVENTS
+// === RESET
 // ===
+const resetState = (s: State) => {
+    const world: World = {
+        attributes: {
+            students: [],
+            art: [],
+            society: [],
+            you: []
+        },
+        concepts: [],
+        manifesto: {
+            concepts: [],
+            sentences: [],
+        }
+    }
 
-
+    s.scene = 'start'
+    s.currentConcepts = []
+    s.world = world
+}
 
 // ===
 // === BOOTSTRAP
