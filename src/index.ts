@@ -30,9 +30,9 @@ import {
 import { clone } from 'rambda'
 import { createButtonsElement, createDomElementWithIdAndClass, shuffle } from './util'
 import { introTextTemplate, outroTextTemplate, questionTextTemplate, startTextTemplate } from './templates'
-import { fadeInElement, fadeOutElement, hideElement, showElement } from './animations'
+import { fadeInElement, fadeOutElement, hideElement, hideElementOnlyWithOpacity, showElement } from './animations'
 import { composeManifestoHeading, generateAction, generateManifestoTextForPrinting, getConceptsForChoice, getManifestoNumber, postManifesto } from './logic'
-import { INTRO_TIMING, MANIFESTO_TIMING, OUTRO_TIMING } from './constants'
+import { CHOICE_RESET_TIME, INTRO_TIMING, MANIFESTO_TIMING, OUTRO_TIMING } from './constants'
 
 // ===
 // === DOM
@@ -197,16 +197,16 @@ const resetGlobalElementsState = () => {
     showElement(questionsButtonsGroup.rectangleButtonEl, 'block')
     showElement(questionsButtonsGroup.circleButtonEl, 'block')
 
-    hideElement(introText1El)
-    hideElement(introText2El)
-    hideElement(introText3El)
+    hideElementOnlyWithOpacity(introText1El)
+    hideElementOnlyWithOpacity(introText2El)
+    hideElementOnlyWithOpacity(introText3El)
 
     hideElement(outroEl)
-    hideElement(outroManifestConceptEl1)
-    hideElement(outroManifestConceptEl2)
-    hideElement(outroManifestConceptEl3)
-    hideElement(outroManifestConceptEl4)
-    hideElement(outroTextEl)
+    hideElementOnlyWithOpacity(outroManifestConceptEl1)
+    hideElementOnlyWithOpacity(outroManifestConceptEl2)
+    hideElementOnlyWithOpacity(outroManifestConceptEl3)
+    hideElementOnlyWithOpacity(outroManifestConceptEl4)
+    hideElementOnlyWithOpacity(outroTextEl)
 }
 
 const startCurrentState = async (s: State) => {
@@ -238,6 +238,16 @@ const startCurrentState = async (s: State) => {
 
         // @ts-ignore
         soundBank[`MANIFEST_POJMY_${s.world.concepts.length+1}`].play()
+
+        // Set up timer to go back to beginning
+        s.timers['choice_reset'] = setTimeout(() => {
+            s.scene = 'reset'
+
+            fadeOutElement(questionsEl).then(() => {
+                resetState(s)
+                startCurrentState(s)
+            })
+        }, CHOICE_RESET_TIME)
         
         // Choose concepts and assign them to questions
         getConceptsForChoice(s)
@@ -262,7 +272,7 @@ const startCurrentState = async (s: State) => {
         manifestoHeadingEl.innerHTML = ''
 
         if (s.world.concepts.length == 1) {
-            const consequenceSentence = generateAction(subjects[0], actions, actionModifiers, objects)
+            const consequenceSentence = generateAction(subjects[0], actions, actionModifiers, objects, s.world)
 
             s.world.manifesto.sentences.push(s.world.concepts[0].manifestoSentence)
             s.world.manifesto.sentences.push(consequenceSentence)
@@ -272,7 +282,7 @@ const startCurrentState = async (s: State) => {
         }
 
         if (s.world.concepts.length == 2) {
-            const consequenceSentence = generateAction(subjects[1], actions, actionModifiers, objects)
+            const consequenceSentence = generateAction(subjects[1], actions, actionModifiers, objects, s.world)
 
             s.world.manifesto.sentences.push(s.world.concepts[1].manifestoSentence)
             s.world.manifesto.sentences.push(consequenceSentence)
@@ -282,7 +292,7 @@ const startCurrentState = async (s: State) => {
         }
 
         if (s.world.concepts.length == 3) {
-            const consequenceSentence = generateAction(subjects[2], actions, actionModifiers, objects)
+            const consequenceSentence = generateAction(subjects[2], actions, actionModifiers, objects, s.world)
 
             s.world.manifesto.sentences.push(s.world.concepts[2].manifestoSentence)
             s.world.manifesto.sentences.push(consequenceSentence)
@@ -292,7 +302,7 @@ const startCurrentState = async (s: State) => {
         }
 
         if (s.world.concepts.length == 4) {
-            const consequenceSentence = generateAction(subjects[3], actions, actionModifiers, objects)
+            const consequenceSentence = generateAction(subjects[3], actions, actionModifiers, objects, s.world)
 
             s.world.manifesto.sentences.push(s.world.concepts[3].manifestoSentence)
             s.world.manifesto.sentences.push(consequenceSentence)
@@ -428,6 +438,9 @@ const finishCurrentState = async (choice: string, s: State) => {
     if (s.scene == 'choice') {
         console.log('FinishCurrentState: Choice')
 
+        // Clears the timeout that pushes us back to beginning
+        clearTimeout(s.timers['choice_reset'])
+
         if (choice == 'A') {
             s.world.concepts.push(s.currentConcepts[0])
             fadeOutElement(question2El)
@@ -510,7 +523,11 @@ const resetState = (s: State) => {
         manifesto: {
             concepts: [],
             sentences: [],
-        }
+        },
+        usedVerbs: [],
+        usedActions: [],
+        usedActionModifiers: [],
+        usedObjects: []
     }
 
     s.scene = 'start'
@@ -532,9 +549,14 @@ const init = () => {
         },
         concepts: [],
         manifesto: {
-            concepts: [],
+            concepts: [
+            ],
             sentences: [],
-        }
+        },
+        usedVerbs: [],
+        usedActions: [],
+        usedActionModifiers: [],
+        usedObjects: []
     }    
 
     const state: State = {
@@ -544,7 +566,9 @@ const init = () => {
         conceptsDatabase: shuffle(clone(concepts)),
         attributesDatabase: shuffle(clone(attributes)),
 
-        world: world
+        world: world,
+
+        timers: {}
     }
 
     window.addEventListener('keyup', (e) => {

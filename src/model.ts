@@ -37,16 +37,23 @@ export interface World {
     concepts: Concept[]
     attributes: WorldAttributes
     manifesto: Manifesto
+
+    usedVerbs: string[]
+    usedActions: string[]
+    usedActionModifiers: string[]
+    usedObjects: string[]
 }
 
 export interface State {
-    scene: 'start' | 'intro' | 'choice' | 'manifesto' | 'outro'
+    scene: 'start' | 'intro' | 'choice' | 'manifesto' | 'outro' | 'reset'
     currentConcepts: Concept[]
 
     conceptsDatabase: Concept[]
     attributesDatabase: Attribute[]
 
     world: World
+
+    timers: Record<string, any>
 }
 
 export interface Subject {

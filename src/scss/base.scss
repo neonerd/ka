@@ -129,7 +129,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
+    align-items: top;
 
     width: 100%;
 }
@@ -236,7 +236,7 @@ body {
 
     margin-bottom: 50px;
 
-    display: none;
+    display: block;
     opacity: 0;
 }
 
@@ -249,7 +249,7 @@ body {
     font-weight: 700;
     line-height: 50px;
 
-    display: none;
+    display: block;
     opacity: 0;
 
     p {

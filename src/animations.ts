@@ -8,6 +8,10 @@ export function hideElement (el: HTMLElement) {
     el.style.display = 'none'
 }
 
+export function hideElementOnlyWithOpacity (el: HTMLElement) {
+    el.style.opacity = '0'
+}
+
 export function fadeInElement (el: HTMLElement, time = 4000, display = 'flex') {
     return new Promise((resolve) => {
         el.style.transition = `all ${time}ms`

@@ -71,7 +71,7 @@ const actions: Action[] = [
     {verb: 'čte', pluralVerb: 'čtou'},
     {verb: 'vidí', pluralVerb: 'vidí'},
     {verb: 'slyší', pluralVerb: 'slyší'},
-    {verb: 'hledá', pluralVerb: 'hledají', suffix: 'nové'},
+    {verb: 'hledá', pluralVerb: 'hledají'},
     {verb: 'sleduje', pluralVerb: 'sledují'},
     {verb: 'poslouchá', pluralVerb: 'poslouchají'},
     {verb: 'vnímá', pluralVerb: 'vnímají'},

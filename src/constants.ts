@@ -13,3 +13,5 @@ export const OUTRO_TIMING = 30000
 
 export const DEFAULT_FADE_IN = 4000
 export const DEFAULT_FADE_OUT = 4000
+
+export const CHOICE_RESET_TIME = 1000 * 60 * 3

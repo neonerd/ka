@@ -1,6 +1,6 @@
 import {clone} from 'rambda'
 
-import { Action, ActionModifier, Concept, DisplayVariant, Objekt, State, Subject } from "./model"
+import { Action, ActionModifier, Concept, DisplayVariant, Objekt, State, Subject, World } from "./model"
 import { shuffle, pick } from "./util"
 import { capitalize } from "./strings"
 import { concepts, replacementTokens } from './data'
@@ -56,9 +56,42 @@ export function getWeightedDisplayVariants (arr: DisplayVariant[]): DisplayVaria
 }
 
 //
+// Functions that allow us to select a word based on already used words
+//
+export function getAvailableObject (world: World, objects: Objekt[]): Objekt {
+    for (const o of objects) {
+        if (world.usedObjects.indexOf(o.name) < 0) {
+            return o
+        }
+    }
+
+    throw new Error('Could not find another object')
+}
+
+export function getAvailableAction (world: World, actions: Action[]): Action {
+    for (const a of actions) {
+        if (world.usedActions.indexOf(a.verb) < 0) {
+            return a
+        }
+    }
+
+    throw new Error('Could not find another action')
+}
+
+export function getAvailableActionModifiers (world: World, actionModifiers: ActionModifier[]): ActionModifier {
+    for (const a of actionModifiers) {
+        if (world.usedActionModifiers.indexOf(a.name) < 0) {
+            return a
+        }
+    }
+
+    throw new Error('Could not find another actionModifier')
+}
+
+//
 // Generate an action that is a consequence of my manifesto concept choice
 // 
-export function generateAction (subject: Subject, actions: Action[], actionModifiers: ActionModifier[], objects: Objekt[]): string {
+export function generateAction (subject: Subject, actions: Action[], actionModifiers: ActionModifier[], objects: Objekt[], world: World): string {
     const sentenceTokens = []
 
     // Select a subject variant
@@ -67,14 +100,18 @@ export function generateAction (subject: Subject, actions: Action[], actionModif
 
     // Select an object
     const availableObjects = shuffle(clone(objects).filter(o => o.applicableSubjects.indexOf(subject.name) > -1))
-    const object = availableObjects[0]
+    const object = getAvailableObject(world, availableObjects)
+    world.usedObjects.push(object.name)
 
     // Select an action
     const availableActions = shuffle(clone(actions).filter(a => object.applicableActions.indexOf(a.verb) > -1))
-    const action = availableActions[0]
+    const action = getAvailableAction(world, availableActions)
+    world.usedActions.push(action.verb)
 
+    // Select an action modifier
     const availableActionModifiers = shuffle(clone(actionModifiers))
-    const actionModifier = availableActionModifiers[0]    
+    const actionModifier = getAvailableActionModifiers(world, availableActionModifiers)
+    world.usedActionModifiers.push(actionModifier.name)
 
     // Create the sentence
     // Subject
