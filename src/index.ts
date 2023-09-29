@@ -58,8 +58,14 @@ startEl.appendChild(startButtonsGroup.buttonsEl)
 
 // === Intro
 const introEl = createDomElementWithIdAndClass('intro', 'intro', wrapperEl)
-const introTextEl = createDomElementWithIdAndClass('intro-text', 'intro-text', introEl)
-introTextEl.innerHTML = introTextTemplate
+
+const introText1El = createDomElementWithIdAndClass('intro-text', 'intro-text', introEl)
+const introText2El = createDomElementWithIdAndClass('intro-text-2', 'intro-text', introEl)
+const introText3El = createDomElementWithIdAndClass('intro-text-3', 'intro-text', introEl)
+
+introText1El.innerHTML = 'Jste pedagožstvo / pedagožka / pedagog.'
+introText2El.innerHTML = 'Jste součástí pedagogického sboru.'
+introText3El.innerHTML = 'Vyberte si čtyři pojmy, které se stanou jádrem vašeho manifesta vzdělávání.'
 
 // const introButtonsGroup = createButtonsElement('intro')
 // introEl.appendChild(introButtonsGroup.buttonsEl)
@@ -207,11 +213,12 @@ const startCurrentState = async (s: State) => {
 
         soundBank.MANIFEST_INTRO.play()
 
-        fadeInElement(introEl).then(() => {
-            setTimeout(() => {
-                finishCurrentState('', s)
-            }, INTRO_TIMING)
-        })
+        showElement(introEl)
+        await fadeInElement(introText1El)
+        await fadeInElement(introText2El)
+        await fadeInElement(introText3El)
+
+        finishCurrentState('', s)
     }
 
     // CHOICE

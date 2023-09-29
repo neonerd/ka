@@ -101,10 +101,10 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: 50px;
-    
-    p {
-        margin-bottom: 50px;
-    }
+    margin-bottom: 50px;
+
+    display: block;
+    opacity: 0;
 }
 
 // ===
