@@ -60,7 +60,7 @@ const subjects: Subject[] = [
 const actions: Action[] = [
     {verb: 'je', pluralVerb: 'jsou'},
 
-    {verb: 'stávkuje', pluralVerb: 'stávkují', suffix: 'za'},
+    {verb: 'stávkuje', pluralVerb: 'stávkují', suffix: 'za', disableModifiers: true},
     {verb: 'bojuje', pluralVerb: 'bojují', suffix: 'o'},
     {verb: 'pečuje', pluralVerb: 'pečují', suffix: 'o'},
 
@@ -136,6 +136,7 @@ const actionModifiers: ActionModifier[] = [
     {name: 'zapáleněji'},
     {name: 'radostněji'},
     {name: 'explicitněji'},
+    {name: 'pozorněji'},
     {name: 's větší vervou'},
     {name: 's větší láskou'},
     {name: 's větším nasazením'}
@@ -153,11 +154,12 @@ const objects: Objekt[] = [
     {name: 'svobodu', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['svobodu'], applicableSubjects: ['studentstvo', 'společnost']},
     {name: 'bezpečí', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['bezpečí'], applicableSubjects: ['studentstvo', 'společnost']},
     {name: 'úctu', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['úctu'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'ekonomickou soběstačnost', applicableActions: ['stávkuje', 'bojuje'], displayVariants: ['ekonomickou soběstačnost'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'nepodmíněný příjem', applicableActions: ['stávkuje', 'bojuje'], displayVariants: ['nepodmíněný příjem'], applicableSubjects: ['studentstvo', 'společnost']},
     {name: 'budovy', applicableActions: ['obsazuje'], displayVariants: ['budovy'], applicableSubjects: ['studentstvo', 'společnost']},
     {name: 'věřejný prostor', applicableActions: ['obsazuje', 'vnímá', 'sleduje', 'reflektuje'], displayVariants: ['věřejný prostor'], applicableSubjects: ['studentstvo', 'společnost']},
 
+    // {name: 'ekonomickou soběstačnost', applicableActions: ['stávkuje', 'bojuje'], displayVariants: ['ekonomickou soběstačnost'], applicableSubjects: ['studentstvo', 'společnost']},
+    // {name: 'nepodmíněný příjem', applicableActions: ['stávkuje', 'bojuje'], displayVariants: ['nepodmíněný příjem'], applicableSubjects: ['studentstvo', 'společnost']},
+    
     // UMĚNÍ
     {name: 'knihy', applicableActions: ['čte', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['knihy'], applicableSubjects: ['studentstvo', 'společnost']},
     {name: 'filmy', applicableActions: ['sleduje', 'vnímá', 'tvoří', 'reflektuje'], displayVariants: ['filmy'], applicableSubjects: ['studentstvo', 'společnost']},

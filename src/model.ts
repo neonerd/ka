@@ -67,6 +67,7 @@ export interface Subject {
 export interface Action {
     verb: string
     pluralVerb: string
+    disableModifiers?: boolean
     suffix?: string
     modifiers?: string[]
 }
