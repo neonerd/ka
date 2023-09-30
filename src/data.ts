@@ -60,15 +60,12 @@ const subjects: Subject[] = [
 const actions: Action[] = [
     
     {verb: 'je', pluralVerb: 'jsou'},
-
     {verb: 'stávkuje', pluralVerb: 'stávkují', suffix: 'za', disableModifiers: true},
     {verb: 'bojuje', pluralVerb: 'bojují', suffix: 'o'},
     {verb: 'pečuje', pluralVerb: 'pečují', suffix: 'o'},
-
     {verb: 'organizuje', pluralVerb: 'organizují'},
     {verb: 'pomáhá', pluralVerb: 'pomáhají',},
     {verb: 'buduje', pluralVerb: 'budují',},
-
     {verb: 'čte', pluralVerb: 'čtou'},
     {verb: 'vidí', pluralVerb: 'vidí'},
     {verb: 'slyší', pluralVerb: 'slyší'},
@@ -78,12 +75,10 @@ const actions: Action[] = [
     {verb: 'vnímá', pluralVerb: 'vnímají'},
     {verb: 'tvoří', pluralVerb: 'tvoří'},
     {verb: 'reflektuje', pluralVerb: 'reflektují'},
-
     {verb: 'přemýšlí', pluralVerb: 'přemýšlí', suffix: 'o'},
     {verb: 'kreslí', pluralVerb: 'kreslí'},
     {verb: 'točí', pluralVerb: 'točí'},
     {verb: 'maluje', pluralVerb: 'malují'},
-
     {verb: 'obsazuje', pluralVerb: 'obsazují'},
     {verb: 'demonstruje', pluralVerb: 'demonstrují'},
     {verb: 'nabádá', pluralVerb: 'nabádají'},
@@ -94,22 +89,11 @@ const actions: Action[] = [
     {verb: 'generuje', pluralVerb: 'generují'},
     {verb: 'dekonstruuje', pluralVerb: 'dekonstruují'},
     {verb: 'provokuje', pluralVerb: 'provokují'},
+    {verb: 'chodí', pluralVerb: 'chodí', suffix: 'na'},
 
     // ===
     // === UMĚNÍ
     // ===
-    // už použité:
-    // je
-    // dekonstruuje
-    // ovlivňuje
-    // reflektuje
-    // hledá
-    // zlepšuje
-    // formuje
-    // posiluje
-    // zobrazuje
-    // znázorňuje
-    // předpovídá
 
     {verb: 'zobrazuje', pluralVerb: 'zobrazují'},
     {verb: 'znázorňuje', pluralVerb: 'znázorňují'},
@@ -150,13 +134,16 @@ const objects: Objekt[] = [
     // ===
 
     // SPOLEČENSKÁ ROVINA
-    {name: 'spravedlnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['spravedlnost'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'rovnoprávnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['rovnoprávnost'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'svobodu', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['svobodu'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'bezpečí', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['bezpečí'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'spravedlnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje', 'buduje', 'vnímá'], displayVariants: ['spravedlnost'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'rovnoprávnost', applicableActions: ['stávkuje', 'bojuje', 'pečuje', 'buduje', 'vnímá'], displayVariants: ['rovnoprávnost'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'svobodu', applicableActions: ['stávkuje', 'bojuje', 'pečuje', 'buduje', 'vímá'], displayVariants: ['svobodu'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'bezpečí', applicableActions: ['stávkuje', 'bojuje', 'pečuje', 'buduje', 'vnímá'], displayVariants: ['bezpečí'], applicableSubjects: ['studentstvo', 'společnost']},
+    
+    // TODO: Sme s týmto v pohode?
     {name: 'úctu', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['úctu'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'budovy', applicableActions: ['obsazuje'], displayVariants: ['budovy'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'věřejný prostor', applicableActions: ['obsazuje', 'vnímá', 'sleduje', 'reflektuje'], displayVariants: ['věřejný prostor'], applicableSubjects: ['studentstvo', 'společnost']},
+    
+    {name: 'budovy', applicableActions: ['obsazuje', 'vnímá', 'pečuje'], displayVariants: ['budovy'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'věřejný prostor', applicableActions: ['obsazuje', 'vnímá', 'sleduje', 'reflektuje', 'bojuje', 'pečuje'], displayVariants: ['věřejný prostor'], applicableSubjects: ['studentstvo', 'společnost']},
 
     // {name: 'ekonomickou soběstačnost', applicableActions: ['stávkuje', 'bojuje'], displayVariants: ['ekonomickou soběstačnost'], applicableSubjects: ['studentstvo', 'společnost']},
     // {name: 'nepodmíněný příjem', applicableActions: ['stávkuje', 'bojuje'], displayVariants: ['nepodmíněný příjem'], applicableSubjects: ['studentstvo', 'společnost']},
@@ -191,14 +178,14 @@ const objects: Objekt[] = [
     {name: 'mech', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['mech'], applicableSubjects: ['studentstvo', 'společnost']},
 
     // EVENTY
-    {name: 'stávky', applicableActions: ['organizuje'], displayVariants: ['stávky'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'výstavy', applicableActions: ['organizuje'], displayVariants: ['výstavy'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'konference', applicableActions: ['organizuje'], displayVariants: ['konference'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'koncerty', applicableActions: ['organizuje'], displayVariants: ['koncerty'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'festivaly', applicableActions: ['organizuje'], displayVariants: ['festivaly'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'diskuze', applicableActions: ['organizuje'], displayVariants: ['diskuze'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'protesty', applicableActions: ['organizuje'], displayVariants: ['protesty'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'demonstrace', applicableActions: ['organizuje'], displayVariants: ['demonstrace'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'stávky', applicableActions: ['organizuje', 'chodí'], displayVariants: ['stávky'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'výstavy', applicableActions: ['organizuje', 'chodí'], displayVariants: ['výstavy'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'konference', applicableActions: ['organizuje', 'chodí'], displayVariants: ['konference'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'koncerty', applicableActions: ['organizuje', 'chodí'], displayVariants: ['koncerty'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'festivaly', applicableActions: ['organizuje', 'chodí'], displayVariants: ['festivaly'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'diskuze', applicableActions: ['organizuje', 'chodí'], displayVariants: ['diskuze'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'protesty', applicableActions: ['organizuje', 'chodí'], displayVariants: ['protesty'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'demonstrace', applicableActions: ['organizuje', 'chodí'], displayVariants: ['demonstrace'], applicableSubjects: ['studentstvo', 'společnost']},
 
     //
     // vidí jinak tvary

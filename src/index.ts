@@ -45,7 +45,7 @@ rootEl.id='root'
 window.document.body.appendChild(rootEl)
 
 const wrapperEl = createDomElementWithIdAndClass('wrapper', 'wrapper')
-wrapperEl.classList.add('color-10')
+wrapperEl.classList.add('color-1')
 rootEl.appendChild(wrapperEl)
 let currentColorTheme = 1
 
@@ -614,7 +614,7 @@ const init = () => {
         timers: {}
     }
 
-    window.addEventListener('keyup', (e) => {
+    window.addEventListener('keypress', (e) => {
         handleInput(e, state)
     })
 
