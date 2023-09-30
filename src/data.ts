@@ -240,8 +240,8 @@ const objects: Objekt[] = [
     {name: 'jiné lidi', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['jiné lidi'], applicableSubjects: ['studentstvo', 'společnost']},
     {name: 'své přátelstvo', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['své přátelstvo'], applicableSubjects: ['studentstvo', 'společnost']},
     {name: 'svou rodinu', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['svou rodinu'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'komunitu', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['komunitu'], applicableSubjects: ['studentstvo', 'společnost']},
-    {name: 'vztahy', applicableActions: ['vnímá', 'sleduje', 'reflektuje'], displayVariants: ['vztahy', 'mezilidské vztahy', 'partnerské vztahy', 'romantické vztahy'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'komunitu', applicableActions: ['vnímá', 'reflektuje', 'organizuje', 'buduje'], displayVariants: ['komunitu'], applicableSubjects: ['studentstvo', 'společnost']},
+    {name: 'vztahy', applicableActions: ['vnímá', 'sleduje', 'reflektuje', 'buduje'], displayVariants: ['vztahy', 'mezilidské vztahy', 'partnerské vztahy', 'romantické vztahy'], applicableSubjects: ['studentstvo', 'společnost']},
     {name: 'lásku', applicableActions: ['stávkuje', 'bojuje', 'pečuje'], displayVariants: ['lásku'], applicableSubjects: ['studentstvo', 'společnost']},
 
     // ===
