@@ -45,8 +45,9 @@ rootEl.id='root'
 window.document.body.appendChild(rootEl)
 
 const wrapperEl = createDomElementWithIdAndClass('wrapper', 'wrapper')
-wrapperEl.classList.add('color-10')
+wrapperEl.classList.add('color-1')
 rootEl.appendChild(wrapperEl)
+let currentColorTheme = 1
 
 // Sections
 
@@ -187,6 +188,22 @@ const soundBank: Record<string, Howl> = {
 // ===
 // === FUNCTIONS
 // ===
+
+/*
+    This function changes the color scheme to the next one
+*/
+const changeColorPalette = () => {
+    const nextColor = currentColorTheme == 10 ? 'color-1' : `color-${currentColorTheme+1}`
+    
+    wrapperEl.classList.add(nextColor)
+    wrapperEl.classList.remove(`color-${currentColorTheme}`)
+
+    if (currentColorTheme == 10) {
+        currentColorTheme = 1;
+    } else {
+        currentColorTheme++
+    }
+}
 
 /*
     This function resets CSS of our elements to fix their positions and stuff after animations and before starting any state transition.
@@ -507,8 +524,13 @@ const finishCurrentState = async (choice: string, s: State) => {
     if (s.scene == 'outro') {
         console.log('FinishCurrentState: Outro')
 
+        await fadeOutElement(wrapperEl, 4000, 'block')
+
+        changeColorPalette()
         resetState(s)
         startCurrentState(s)
+    
+        await fadeInElement(wrapperEl)
     }
 }
 

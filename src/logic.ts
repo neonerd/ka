@@ -115,22 +115,33 @@ export function generateAction (subject: Subject, actions: Action[], actionModif
 
     // Create the sentence
     // Subject
-    sentenceTokens.push(
-        capitalize(
-            replaceToken(subjectVariant.text)
+    if (subject.name != 'já') {
+        sentenceTokens.push(
+            capitalize(
+                replaceToken(subjectVariant.text)
+            )
         )
-    )
+    }
     
     // Action
+    // This does not happen with "ja"
     if (subject.useActionModifiers) {
         sentenceTokens.push(actionModifier.name)
     }
     
     // Plural
     if (subjectVariant.isPlural) {
-        sentenceTokens.push(action.pluralVerb)
+        if (subject.name == 'já') {
+            sentenceTokens.push(capitalize(action.pluralVerb))
+        } else {
+            sentenceTokens.push(action.pluralVerb)
+        }
     } else {
-        sentenceTokens.push(action.verb)
+        if (subject.name == 'já') {
+            sentenceTokens.push(capitalize(action.verb))
+        } else {
+            sentenceTokens.push(action.verb)
+        }
     }
     
     if (action.suffix) {
