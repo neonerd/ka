@@ -65,7 +65,7 @@ export function getAvailableObject (world: World, objects: Objekt[]): Objekt {
         }
     }
 
-    throw new Error('Could not find another object')
+    return objects[0]
 }
 
 export function getAvailableAction (world: World, actions: Action[]): Action {
@@ -75,7 +75,7 @@ export function getAvailableAction (world: World, actions: Action[]): Action {
         }
     }
 
-    throw new Error('Could not find another action')
+    return actions[0]
 }
 
 export function getAvailableActionModifiers (world: World, actionModifiers: ActionModifier[]): ActionModifier {
@@ -85,7 +85,7 @@ export function getAvailableActionModifiers (world: World, actionModifiers: Acti
         }
     }
 
-    throw new Error('Could not find another actionModifier')
+    return actionModifiers[0]
 }
 
 //

@@ -121,7 +121,7 @@ const actions: Action[] = [
 
     {verb: 'jsem', pluralVerb: 'jsme'},
     {verb: 'cítím', pluralVerb: 'cítíme'},
-    {verb: 'se cítím', pluralVerb: 'se cítíme'},
+    {verb: 'cítím se', pluralVerb: 'cítíme se'},
     {verb: 'přemýšlím', pluralVerb: 'přemyšlíme', suffix: 'o'},
     {verb: 'chápu', pluralVerb: 'chápeme'},
     {verb: 'vím', pluralVerb: 'víme'},
@@ -299,11 +299,11 @@ const objects: Objekt[] = [
     {name: 'víc něhy', applicableActions: ['cítím'], displayVariants: ['víc něhy'], applicableSubjects: ['já']},
     {name: 'víc sounáležitost', applicableActions: ['cítím'], displayVariants: ['víc sounáležitost'], applicableSubjects: ['já']},
     {name: 'víc', applicableActions: ['cítím', 'vím'], displayVariants: ['víc'], applicableSubjects: ['já']},
-    {name: 'lépe', applicableActions: ['cítím'], displayVariants: ['lépe'], applicableSubjects: ['já']},
+    {name: 'lépe', applicableActions: ['cítím se'], displayVariants: ['lépe'], applicableSubjects: ['já']},
     {name: 'krásu', applicableActions: ['cítím'], displayVariants: ['krásu'], applicableSubjects: ['já']}, 
 
-    {name: 'respektovanější', applicableActions: ['se cítím'], displayVariants: ['respektovanější'], applicableSubjects: ['já']},
-    {name: 'být víc součástí', applicableActions: ['se cítím'], displayVariants: ['být víc součástí'], applicableSubjects: ['já']}, 
+    {name: 'respektovanější', applicableActions: ['cítím se'], displayVariants: ['respektovanější'], applicableSubjects: ['já']},
+    {name: 'být víc součástí', applicableActions: ['cítím se'], displayVariants: ['být víc součástí'], applicableSubjects: ['já']}, 
 
     // přemýšlím o
     {name: 'hezčím světě', applicableActions: ['přemýšlím'], displayVariants: ['hezčím světě'], applicableSubjects: ['já']},
@@ -312,9 +312,6 @@ const objects: Objekt[] = [
     {name: 'lásce', applicableActions: ['přemýšlím'], displayVariants: ['lásce'], applicableSubjects: ['já']},
     {name: 'smyslech', applicableActions: ['přemýšlím'], displayVariants: ['smyslech'], applicableSubjects: ['já']},
     {name: 'přírodě', applicableActions: ['přemýšlím'], displayVariants: ['přírodě'], applicableSubjects: ['já']},
-
-    // vím
-    {name: 'hezčím světě', applicableActions: ['cítím'], displayVariants: ['hezčím světě'], applicableSubjects: ['já']},
 
     // chápu
     {name: 'podstatu', applicableActions: ['chápu'], displayVariants: ['podstatu'], applicableSubjects: ['já']},
