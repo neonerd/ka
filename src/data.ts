@@ -139,7 +139,8 @@ const actionModifiers: ActionModifier[] = [
     {name: 'pozorněji'},
     {name: 's větší vervou'},
     {name: 's větší láskou'},
-    {name: 's větším nasazením'}
+    {name: 's větším nasazením'},
+    {name: 'křehce'},
 ]
 
 const objects: Objekt[] = [
@@ -285,11 +286,12 @@ const objects: Objekt[] = [
     {name: 'spokojenější', applicableActions: ['jsem'], displayVariants: ['spokojenější'], applicableSubjects: ['já']},
     {name: 'citlivější', applicableActions: ['jsem'], displayVariants: ['citlivější'], applicableSubjects: ['já']},
     {name: 'otevřenější', applicableActions: ['jsem'], displayVariants: ['otevřenější'], applicableSubjects: ['já']},
-    {name: 'sebvědomejší', applicableActions: ['jsem'], displayVariants: ['sebvědomejší'], applicableSubjects: ['já']},
+    {name: 'sebevědomejší', applicableActions: ['jsem'], displayVariants: ['sebvědomejší'], applicableSubjects: ['já']},
     {name: 'smířlivější', applicableActions: ['jsem'], displayVariants: ['smířlivější'], applicableSubjects: ['já']},
     {name: 'hodnější', applicableActions: ['jsem'], displayVariants: ['hodnější'], applicableSubjects: ['já']},
     {name: 'chápavější', applicableActions: ['jsem'], displayVariants: ['chápavější'], applicableSubjects: ['já']},
     {name: 'vnímavější', applicableActions: ['jsem'], displayVariants: ['vnímavější'], applicableSubjects: ['já']},
+    {name: 'křehčí', applicableActions: ['jsem'], displayVariants: ['křehčí'], applicableSubjects: ['já']},
 
     // cítím
     {name: 'víc lásky', applicableActions: ['cítím'], displayVariants: ['víc lásky'], applicableSubjects: ['já']},

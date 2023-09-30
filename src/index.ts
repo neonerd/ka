@@ -28,7 +28,7 @@ import {
 // ===
 
 import { clone } from 'rambda'
-import { createButtonsElement, createDomElementWithIdAndClass, shuffle } from './util'
+import { createButtonsElement, createDomElementWithIdAndClass, shuffle, sleepPromise } from './util'
 import { introTextTemplate, outroTextTemplate, questionTextTemplate, startTextTemplate } from './templates'
 import { fadeInElement, fadeOutElement, hideElement, hideElementOnlyWithOpacity, showElement } from './animations'
 import { composeManifestoHeading, generateAction, generateManifestoTextForPrinting, getConceptsForChoice, getManifestoNumber, postManifesto } from './logic'
@@ -142,8 +142,9 @@ outroEl.appendChild(outroButtonsGroup.buttonsEl)
 // === SOUND
 // ===
 import { Howl } from 'howler'
+import { fadeOutAndStopSound } from './audio'
 
-const soundBank = {
+const soundBank: Record<string, Howl> = {
     'MANIFEST_INTRO': new Howl({
         src: ['/sounds/MANIFEST_INTRO.wav'],
         autoplay: false
@@ -222,12 +223,17 @@ const startCurrentState = async (s: State) => {
     if (s.scene == 'intro') {
         console.log('StartCurrentState: Intro')
 
+        // Sound
         soundBank.MANIFEST_INTRO.play()
+
+        // Small pause here
+        await sleepPromise(1000)
 
         showElement(introEl)
         await fadeInElement(introText1El)
         await fadeInElement(introText2El)
         await fadeInElement(introText3El)
+        await sleepPromise(3000)
 
         finishCurrentState('', s)
     }
@@ -236,7 +242,8 @@ const startCurrentState = async (s: State) => {
     if (s.scene == 'choice') {
         console.log('StartCurrentState: Choice')
 
-        // @ts-ignore
+        // Sound
+        soundBank[`MANIFEST_POJMY_${s.world.concepts.length+1}`].volume(1)
         soundBank[`MANIFEST_POJMY_${s.world.concepts.length+1}`].play()
 
         // Set up timer to go back to beginning
@@ -244,6 +251,7 @@ const startCurrentState = async (s: State) => {
             s.scene = 'reset'
 
             fadeOutElement(questionsEl).then(() => {
+                fadeOutAndStopSound(soundBank[`MANIFEST_POJMY_${s.world.concepts.length+1}`])
                 resetState(s)
                 startCurrentState(s)
             })
@@ -262,7 +270,6 @@ const startCurrentState = async (s: State) => {
         console.log('StartCurrentState: Manifesto')
 
         // Play the sound
-        // @ts-ignore
         soundBank[`MANIFEST_MANIFEST_${s.world.concepts.length}`].play()
 
         // Compose the manifesto
@@ -349,9 +356,15 @@ const startCurrentState = async (s: State) => {
             await fadeInElement(manifestoFourth2ParagraphEl)
         }
 
+        // Timing is custom for each step
+        let timingForNow = MANIFESTO_TIMING
+        if (s.world.concepts.length != 1) {
+            timingForNow = timingForNow - 4000
+        }
+
         setTimeout(() => {
             finishCurrentState('', s)
-        }, MANIFESTO_TIMING)
+        }, timingForNow)
     }
 
     // OUTRO
@@ -404,8 +417,12 @@ const startCurrentState = async (s: State) => {
 
             // Finish after timing
             setTimeout(() => {
-                finishCurrentState('', s)
-            }, OUTRO_TIMING)
+                fadeOutElement(outroEl).then(() => {
+                    setTimeout(() => {
+                        finishCurrentState('', s)
+                    }, 5000)
+                })
+            }, 20000)
         })
     }
 }
@@ -451,6 +468,11 @@ const finishCurrentState = async (choice: string, s: State) => {
             await fadeOutElement(questionsButtonsGroup.circleButtonEl)
         }
 
+        // Stop sound as we are crossing over to the next sound?
+        setTimeout(() => {
+            fadeOutAndStopSound(soundBank[`MANIFEST_POJMY_${s.world.concepts.length}`], 4000)
+        }, 2000)
+
         fadeOutElement(questionsEl).then(() => {
             s.scene = 'manifesto'
             startCurrentState(s)
@@ -483,8 +505,6 @@ const finishCurrentState = async (choice: string, s: State) => {
     // OUTRO
     if (s.scene == 'outro') {
         console.log('FinishCurrentState: Outro')
-
-        fadeOutElement(outroEl)
 
         resetState(s)
         startCurrentState(s)

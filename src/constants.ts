@@ -6,7 +6,7 @@ export const INTRO_TIMING = 2000
 
 // PRODUCTION
 // export const MANIFESTO_TIMING = 30000
-export const MANIFESTO_TIMING = 23000
+export const MANIFESTO_TIMING = 18000
 
 // PRODUCTION
 export const OUTRO_TIMING = 30000

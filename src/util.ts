@@ -30,6 +30,14 @@ export function createButtonsElement (id: string) {
     }
 }
 
+export function sleepPromise (t: number) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(true)
+        }, t)
+    })
+}
+
 export function shuffle<T>(array: T[]): T[] {
     return shuffleRandomJs(nativeMath, array)
 }
