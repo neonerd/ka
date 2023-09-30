@@ -58,6 +58,7 @@ const subjects: Subject[] = [
 ]
 
 const actions: Action[] = [
+    
     {verb: 'je', pluralVerb: 'jsou'},
 
     {verb: 'stávkuje', pluralVerb: 'stávkují', suffix: 'za', disableModifiers: true},
@@ -109,7 +110,6 @@ const actions: Action[] = [
     // zobrazuje
     // znázorňuje
     // předpovídá
-
 
     {verb: 'zobrazuje', pluralVerb: 'zobrazují'},
     {verb: 'znázorňuje', pluralVerb: 'znázorňují'},

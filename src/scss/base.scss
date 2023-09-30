@@ -358,7 +358,7 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background-color: #ebebeb;
+    background-color: rgba(122, 40, 203, 0.5);
 
     animation: moveAround 5s linear infinite;
 }
@@ -368,7 +368,7 @@ body {
     display: block;
     width: 150px;
     height: 150px;
-    background-color: #FFCACA;
+    background-color: rgba(122, 40, 203, 0.5);
 
     animation: moveAroundOpposite 5s linear infinite;
 }

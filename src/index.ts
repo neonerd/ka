@@ -415,9 +415,9 @@ const finishCurrentState = async (choice: string, s: State) => {
 
     if (s.scene == 'start') {
         if (choice == 'A') {
-            await fadeOutElement(startButtonsGroup.rectangleButtonEl)
+            await fadeOutElement(startButtonsGroup.rectangleButtonEl, 2000)
         } else {
-            await fadeOutElement(startButtonsGroup.circleButtonEl)
+            await fadeOutElement(startButtonsGroup.circleButtonEl, 2000)
         }
 
         fadeOutElement(startEl).then(() => {
