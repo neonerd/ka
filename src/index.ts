@@ -45,6 +45,7 @@ rootEl.id='root'
 window.document.body.appendChild(rootEl)
 
 const wrapperEl = createDomElementWithIdAndClass('wrapper', 'wrapper')
+wrapperEl.classList.add('color-10')
 rootEl.appendChild(wrapperEl)
 
 // Sections

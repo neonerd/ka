@@ -11,6 +11,71 @@
 @import "./fonts.scss";
 
 //
+// COLORS
+//
+
+// #2F53D7
+// #B9DEA8
+
+// Takto sme zacali
+$text-color-1: #7A28CB;
+$button-color-1: rgba($text-color-1, 0.5);
+$gradient-1: linear-gradient(180deg, #FFF1D0 0%, rgba(255, 241, 208, 0.00) 100%);
+
+// Modra je dobra
+$text-color-2: #2F53D7;
+$button-color-2: rgba($text-color-2, 0.5);
+$gradient-2: linear-gradient(180deg, #C9D6FF 0%, rgba(255, 241, 208, 0.00) 100%);
+
+// Broken hearts
+$text-color-3: #2F53D7;
+$button-color-3: rgba($text-color-3, 0.5);
+$gradient-3: linear-gradient(to bottom, #d9a7c7, #fffcdc);
+
+// Crimson tide
+$text-color-4: #fff9d6;
+$button-color-4: rgba($text-color-4, 0.5);
+$gradient-4: linear-gradient(to bottom, #642b73, #c6426e);
+
+// Purplepine
+$text-color-5: #dedede;
+$button-color-5: rgba($text-color-5, 0.5);
+$gradient-5: linear-gradient(to bottom, #20002c, #cbb4d4);
+
+// Can you feel the love tonight
+$text-color-6: #ffef94;
+$button-color-6: rgba($text-color-6, 0.5);
+$gradient-6: linear-gradient(to bottom, #4568dc, #b06ab3);
+
+// Radar
+$text-color-7: #034e30;
+$button-color-7: rgba($text-color-7, 0.5);
+$gradient-7: linear-gradient(to bottom, #a770ef, #cf8bf3, #fdb99b);
+
+// Black Rose
+$text-color-8: #2F53D7;
+$button-color-8: rgba($text-color-8, 0.5);
+$gradient-8: linear-gradient(to bottom, #fc67fa, #f4c4f3);
+
+// Love Couple
+$text-color-9: #ebe8e8;
+$button-color-9: rgba($text-color-9, 0.5);
+$gradient-9: linear-gradient(to bottom, #3a6186, #89253e);
+
+// 50 shades of grey
+$text-color-10: #fccd92;
+$button-color-10: rgba($text-color-10, 0.5);
+$gradient-10: linear-gradient(to bottom, #2c3e50, #bdc3c7);
+
+// $text-color-2: #2F53D7;
+// $button-color-2: rgba($text-color-2, 0.5);
+// $gradient-2: linear-gradient(180deg, #B9DEA8 0%, rgba(255, 241, 208, 0.00) 100%);
+
+// $text-color-2: #2F53D7;
+// $button-color-2: rgba($text-color-2, 0.5);
+// $gradient-2: linear-gradient(180deg, #E5C2C2 0%, rgba(255, 241, 208, 0.00) 100%);
+
+//
 // ANIMATIONS
 //
 
@@ -39,7 +104,136 @@ body {
     height: 100vh;
     width: 100vw;
 
-    background: linear-gradient(180deg, #FFF1D0 0%, rgba(255, 241, 208, 0.00) 100%);
+
+    &.color-1 {
+        background: $gradient-1;
+
+        .start-text {color: $text-color-1;}
+        .intro-text {color: $text-color-1;}
+        .question-text {color: $text-color-1;}
+        .manifesto-text {color: $text-color-1;}
+        .outro-manifest-concept {color: $text-color-1;}
+        .outro-text {color: $text-color-1;}
+
+        .circle-button, .rectangle-button {background-color: $button-color-1;}
+    }
+
+    &.color-2 {
+        background: $gradient-2;
+
+        .start-text {color: $text-color-2;}
+        .intro-text {color: $text-color-2;}
+        .question-text {color: $text-color-2;}
+        .manifesto-text {color: $text-color-2;}
+        .outro-manifest-concept {color: $text-color-2;}
+        .outro-text {color: $text-color-2;}
+
+        .circle-button, .rectangle-button {background-color: $button-color-2;}
+    }
+
+    &.color-3 {
+        background: $gradient-3;
+
+        .start-text {color: $text-color-3;}
+        .intro-text {color: $text-color-3;}
+        .question-text {color: $text-color-3;}
+        .manifesto-text {color: $text-color-3;}
+        .outro-manifest-concept {color: $text-color-3;}
+        .outro-text {color: $text-color-3;}
+
+        .circle-button, .rectangle-button {background-color: $button-color-3;}
+    }
+
+    &.color-4 {
+        background: $gradient-4;
+
+        .start-text {color: $text-color-4;}
+        .intro-text {color: $text-color-4;}
+        .question-text {color: $text-color-4;}
+        .manifesto-text {color: $text-color-4;}
+        .outro-manifest-concept {color: $text-color-4;}
+        .outro-text {color: $text-color-4;}
+
+        .circle-button, .rectangle-button {background-color: $button-color-4;}
+    }
+
+    &.color-5 {
+        background: $gradient-5;
+
+        .start-text {color: $text-color-5;}
+        .intro-text {color: $text-color-5;}
+        .question-text {color: $text-color-5;}
+        .manifesto-text {color: $text-color-5;}
+        .outro-manifest-concept {color: $text-color-5;}
+        .outro-text {color: $text-color-5;}
+
+        .circle-button, .rectangle-button {background-color: $button-color-5;}
+    }
+
+    &.color-6 {
+        background: $gradient-6;
+
+        .start-text {color: $text-color-6;}
+        .intro-text {color: $text-color-6;}
+        .question-text {color: $text-color-6;}
+        .manifesto-text {color: $text-color-6;}
+        .outro-manifest-concept {color: $text-color-6;}
+        .outro-text {color: $text-color-6;}
+
+        .circle-button, .rectangle-button {background-color: $button-color-6;}
+    }
+
+    &.color-7 {
+        background: $gradient-7;
+
+        .start-text {color: $text-color-7;}
+        .intro-text {color: $text-color-7;}
+        .question-text {color: $text-color-7;}
+        .manifesto-text {color: $text-color-7;}
+        .outro-manifest-concept {color: $text-color-7;}
+        .outro-text {color: $text-color-7;}
+
+        .circle-button, .rectangle-button {background-color: $button-color-7;}
+    }
+
+    &.color-8 {
+        background: $gradient-8;
+
+        .start-text {color: $text-color-8;}
+        .intro-text {color: $text-color-8;}
+        .question-text {color: $text-color-8;}
+        .manifesto-text {color: $text-color-8;}
+        .outro-manifest-concept {color: $text-color-8;}
+        .outro-text {color: $text-color-8;}
+
+        .circle-button, .rectangle-button {background-color: $button-color-8;}
+    }
+
+    &.color-9 {
+        background: $gradient-9;
+
+        .start-text {color: $text-color-9;}
+        .intro-text {color: $text-color-9;}
+        .question-text {color: $text-color-9;}
+        .manifesto-text {color: $text-color-9;}
+        .outro-manifest-concept {color: $text-color-9;}
+        .outro-text {color: $text-color-9;}
+
+        .circle-button, .rectangle-button {background-color: $button-color-9;}
+    }
+
+    &.color-10 {
+        background: $gradient-10;
+
+        .start-text {color: $text-color-10;}
+        .intro-text {color: $text-color-10;}
+        .question-text {color: $text-color-10;}
+        .manifesto-text {color: $text-color-10;}
+        .outro-manifest-concept {color: $text-color-10;}
+        .outro-text {color: $text-color-10;}
+
+        .circle-button, .rectangle-button {background-color: $button-color-10;}
+    }
 }
 
 // ===
@@ -61,7 +255,7 @@ body {
 }
 
 .start-text {
-    color: var(--Text-Color, #7A28CB);
+    
     text-align: center;
     font-family: Karla;
     font-size: 35px;
@@ -94,7 +288,6 @@ body {
 }
 
 .intro-text {
-    color: var(--Text-Color, #7A28CB);
     text-align: center;
     font-family: Karla;
     font-size: 35px;
@@ -140,7 +333,6 @@ body {
 }
 
 .question-text {
-    color: var(--Text-Color, #7A28CB);
     text-align: left;
     font-family: Karla;
     font-size: 30px;
@@ -182,7 +374,6 @@ body {
     top: 110px;
     left: 140px;
 
-    color: var(--Text-Color, #7A28CB);
     font-size: 35px;
     font-family: Karla;
     font-weight: bold;
@@ -227,7 +418,6 @@ body {
 }
 
 .outro-manifest-concept {
-    color: var(--Text-Color, #7A28CB);
     text-align: center;
     font-family: Karla;
     font-size: 35px;
@@ -242,7 +432,7 @@ body {
 }
 
 .outro-text {
-    color: var(--Text-Color, #7A28CB);
+    
     text-align: center;
     font-family: Karla;
     font-size: 35px;
@@ -358,7 +548,7 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background-color: rgba(122, 40, 203, 0.5);
+    
 
     animation: moveAround 5s linear infinite;
 }
@@ -368,7 +558,6 @@ body {
     display: block;
     width: 150px;
     height: 150px;
-    background-color: rgba(122, 40, 203, 0.5);
 
     animation: moveAroundOpposite 5s linear infinite;
 }
