@@ -13,8 +13,8 @@ const concepts: Concept[] = conceptsJson
 //
 
 const replacementTokens: Record<string, string[]> = {
-    '#personMName#': ['Petr', 'Jakub', 'Jan', 'Vít'],
-    '#personFName#': ['Anna', 'Marie', 'Nora', 'Eva'],
+    '#personMName#': ['Petr', 'Jakub', 'Jan', 'Vít', 'Tomáš', 'Martin', 'Matěj'],
+    '#personFName#': ['Anna', 'Marie', 'Nora', 'Eva', 'Helena', 'Nela', 'Kateřina', 'Zuzana', 'Petra'],
     '#personNBName#': ['Ilja', 'Alex', 'Nikola', 'Jindra', 'Robin']
 }
 
