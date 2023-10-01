@@ -133,8 +133,9 @@ outroManifestConceptEl4.innerHTML = 'stáže'
 const outroTextEl = createDomElementWithIdAndClass('outro-text', 'outro-text', outroEl)
 outroTextEl.innerHTML = outroTextTemplate
 
-const outroButtonsGroup = createButtonsElement('outro')
-outroEl.appendChild(outroButtonsGroup.buttonsEl)
+// TODO: Do we need tlacitka?
+// const outroButtonsGroup = createButtonsElement('outro')
+// outroEl.appendChild(outroButtonsGroup.buttonsEl)
 
 // ===
 // === END OF DOM
