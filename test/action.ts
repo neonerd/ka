@@ -4,7 +4,7 @@ import { subjects, actions, objects, actionModifiers } from '../src/data'
 import { generateAction } from '../src/logic'
 import { World } from '../src/model'
 
-const ATTEMPTS = 1
+const ATTEMPTS = 100
 let i = 0
 
 while (i < ATTEMPTS) {

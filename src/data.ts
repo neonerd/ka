@@ -139,7 +139,7 @@ const actionModifiers: ActionModifier[] = [
     {name: 's větší vervou'},
     {name: 's větší láskou'},
     {name: 's větším nasazením'},
-    {name: 's větší odhodláním'},
+    {name: 's větším odhodláním'},
     {name: 's větší vášní'},
     {name: 's větší pozorností'},
     {name: 's větším zápalem'},
