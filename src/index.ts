@@ -232,6 +232,8 @@ const resetGlobalElementsState = () => {
 const startCurrentState = async (s: State) => {
     resetGlobalElementsState()
 
+    s.allowInput = true
+
     //START
     if (s.scene == 'start') {
         console.log('StartCurrentState: Start')
@@ -540,14 +542,16 @@ const handleInput = (e: KeyboardEvent, s: State) => {
 
     // We only allow input on selected scenes
     if (s.scene == 'choice' || s.scene == 'start') {
-        // A
-        if (e.code == 'KeyA') {
-            finishCurrentState('A', s)
-        }
-
-        // B
-        if (e.code == 'KeyB') {
-            finishCurrentState('B', s)
+        if (s.allowInput) {
+            s.allowInput = false
+            // A
+            if (e.code == 'KeyA') {
+                finishCurrentState('A', s)
+            }
+            // B
+            if (e.code == 'KeyB') {
+                finishCurrentState('B', s)
+            }
         }
     }    
 }
@@ -576,6 +580,7 @@ const resetState = (s: State) => {
 
     s.scene = 'start'
     s.currentConcepts = []
+    s.allowInput = true
     s.world = world
 }
 
@@ -612,7 +617,9 @@ const init = () => {
 
         world: world,
 
-        timers: {}
+        timers: {},
+
+        allowInput: true
     }
 
     window.addEventListener('keypress', (e) => {

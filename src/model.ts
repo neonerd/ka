@@ -54,6 +54,8 @@ export interface State {
     world: World
 
     timers: Record<string, any>
+
+    allowInput: boolean
 }
 
 export interface Subject {
