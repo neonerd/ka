@@ -405,9 +405,9 @@ const startCurrentState = async (s: State) => {
 
         // Get manifesto number
         // PRODUCTION
-        // const manifestoNumber = await getManifestoNumber()
+        const manifestoNumber = await getManifestoNumber()
         // TEST
-        const manifestoNumber = 1
+        // const manifestoNumber = 1
         
         outroTextEl.innerHTML = `<p>Vaše manifesto #${manifestoNumber} se tiskne.</p>`
 
